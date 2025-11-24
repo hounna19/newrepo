@@ -1,11 +1,11 @@
-name = "siren"
+name = "rotate"
 main = "build/worker/shim.mjs"
 compatibility_date = "2024-05-23"
 minify = true
 
 [[kv_namespaces]]
 binding = "SIREN"
-id = "26e47547e3b247aa8bd3d35548833ea9"
+id = "7e2cd53d1aa14b929a2091e5c3157348"
 
 [build]
 command = "cargo install worker-build && worker-build --release"
@@ -14,6 +14,6 @@ command = "cargo install worker-build && worker-build --release"
 build = { command = "cargo install worker-build && worker-build --dev" }
 
 [vars]
-UUID = "cbed2f13-5478-4cb7-a674-7263fdadd39a"
-MAIN_PAGE_URL = "https://raw.githubusercontent.com/iqbal-19/Siren/refs/heads/master/web/index.html"
-SUB_PAGE_URL = "https://raw.githubusercontent.com/iqbal-19/Siren/refs/heads/master/web/sub.html"
+UUID = "a7d5327b-61ae-469d-bd6a-3ea2e906a247"
+MAIN_PAGE_URL = "https://raw.githubusercontent.com/hounna19/newrepo/refs/heads/master/web/index.html"
+SUB_PAGE_URL = "https://raw.githubusercontent.com/hounna19/newrepo/refs/heads/master/web/sub.html"

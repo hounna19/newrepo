@@ -60,7 +60,7 @@
       z-index: -2;
     }
 
-    /* Snow layer – lebih banyak salju */
+    /* Snow layer – flakes lebih besar & lebih banyak */
     .snow-layer,
     .snow-layer::before,
     .snow-layer::after {
@@ -74,32 +74,32 @@
 
     .snow-layer {
       background-image:
-        radial-gradient(2px 2px at 20px 20px, rgba(255,255,255,0.95) 50%, transparent 51%),
-        radial-gradient(2px 2px at 80px 60px, rgba(255,255,255,0.9) 50%, transparent 51%),
-        radial-gradient(2px 2px at 140px 120px, rgba(255,255,255,0.85) 50%, transparent 51%),
-        radial-gradient(2px 2px at 40px 140px, rgba(255,255,255,0.8) 50%, transparent 51%);
+        radial-gradient(3px 3px at 20px 20px, rgba(255,255,255,0.95) 50%, transparent 51%),
+        radial-gradient(3px 3px at 80px 60px, rgba(255,255,255,0.9) 50%, transparent 51%),
+        radial-gradient(3px 3px at 140px 120px, rgba(255,255,255,0.85) 50%, transparent 51%),
+        radial-gradient(3px 3px at 40px 140px, rgba(255,255,255,0.8) 50%, transparent 51%);
       animation: snow 18s linear infinite;
-      opacity: 0.8;
+      opacity: 0.85;
     }
 
     .snow-layer::before {
       content: "";
       background-image:
-        radial-gradient(2px 2px at 40px 40px, rgba(255,255,255,0.8) 50%, transparent 51%),
-        radial-gradient(2px 2px at 120px 100px, rgba(255,255,255,0.7) 50%, transparent 51%),
-        radial-gradient(2px 2px at 160px 20px, rgba(255,255,255,0.7) 50%, transparent 51%);
+        radial-gradient(3px 3px at 40px 40px, rgba(255,255,255,0.85) 50%, transparent 51%),
+        radial-gradient(3px 3px at 120px 100px, rgba(255,255,255,0.75) 50%, transparent 51%),
+        radial-gradient(3px 3px at 160px 20px, rgba(255,255,255,0.75) 50%, transparent 51%);
       animation: snow 26s linear infinite;
-      opacity: 0.7;
+      opacity: 0.75;
     }
 
     .snow-layer::after {
       content: "";
       background-image:
-        radial-gradient(1.5px 1.5px at 60px 10px, rgba(255,255,255,0.7) 50%, transparent 51%),
-        radial-gradient(1.5px 1.5px at 180px 90px, rgba(255,255,255,0.6) 50%, transparent 51%),
-        radial-gradient(1.5px 1.5px at 100px 160px, rgba(255,255,255,0.6) 50%, transparent 51%);
+        radial-gradient(2.5px 2.5px at 60px 10px, rgba(255,255,255,0.8) 50%, transparent 51%),
+        radial-gradient(2.5px 2.5px at 180px 90px, rgba(255,255,255,0.7) 50%, transparent 51%),
+        radial-gradient(2.5px 2.5px at 100px 160px, rgba(255,255,255,0.7) 50%, transparent 51%);
       animation: snow 34s linear infinite;
-      opacity: 0.6;
+      opacity: 0.7;
     }
 
     @keyframes snow {
@@ -319,7 +319,7 @@
       font-weight: 600;
     }
 
-    /* WILDCARD CARD TERPISAH */
+    /* WILDCARD CARD – list vertikal, scroll horizontal */
     .wildcard-card {
       margin-top: 14px;
       padding: 16px 16px 14px;
@@ -345,19 +345,18 @@
     }
 
     .wildcard-scroll {
-      margin-top: 4px;
       padding: 10px 8px;
       border-radius: 12px;
       background: rgba(2, 12, 30, 0.96);
       border: 1px dashed rgba(144,164,174,0.9);
       overflow-x: auto;
-      overflow-y: hidden;
-      white-space: nowrap;
+      overflow-y: auto;
       -webkit-overflow-scrolling: touch;
     }
 
     .wildcard-scroll::-webkit-scrollbar {
       height: 6px;
+      width: 6px;
     }
 
     .wildcard-scroll::-webkit-scrollbar-thumb {
@@ -365,17 +364,13 @@
       border-radius: 999px;
     }
 
-    .wildcard-item {
-      display: inline-block;
+    .wildcard-pre {
       font-family: "JetBrains Mono", "Fira Code", monospace;
       font-size: 11px;
       color: #eceff1;
-      padding: 5px 10px;
-      margin-right: 8px;
-      margin-bottom: 4px;
-      border-radius: 999px;
-      background: rgba(22,35,60,0.9);
-      border: 1px solid rgba(176,190,197,0.7);
+      line-height: 1.5;
+      white-space: pre;
+      min-width: 560px; /* supaya bisa digeser kanan/kiri di HP */
     }
 
     /* CONFIG CARDS */
@@ -524,6 +519,7 @@
       justify-content: flex-end;
     }
 
+    /* Tombol copy lebih soft */
     .copy-btn {
       font-size: 12px;
       padding: 8px 14px;
@@ -533,22 +529,22 @@
       font-weight: 600;
       letter-spacing: 0.05em;
       text-transform: uppercase;
-      background-image: linear-gradient(120deg, #ffeb3b, #ff00c8, #00e5ff);
+      background-image: linear-gradient(120deg, #90caf9, #ce93d8, #ffcc80);
       background-size: 200% 200%;
-      color: #000;
-      box-shadow: 0 8px 18px rgba(0,0,0,0.8);
+      color: #051019;
+      box-shadow: 0 6px 14px rgba(0,0,0,0.7);
       transition: transform 0.18s ease-out, box-shadow 0.18s ease-out, background-position 0.5s ease;
     }
 
     .copy-btn:hover {
       transform: translateY(-2px) scale(1.02);
       background-position: 100% 0%;
-      box-shadow: 0 12px 24px rgba(0,0,0,0.9);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.85);
     }
 
     .copy-btn:active {
       transform: translateY(0) scale(0.97);
-      box-shadow: 0 4px 10px rgba(0,0,0,0.9);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.9);
     }
 
     .status-chip {
@@ -616,7 +612,7 @@
       </div>
       <h1>Abdul Store Official</h1>
       <p class="subtitle">
-        <span>Collaboration by Technic</span> · Fast · Secure · Colorful<br />
+        <span>Collaboration by Technic</span> · Fast · Secure · High Quality<br />
         <span class="design-credit">Design UI: Technic Developer</span>
       </p>
       <div class="glow-line"></div>
@@ -706,35 +702,35 @@
       </div>
     </section>
 
-    <!-- WILDCARD CARD TERPISAH -->
+    <!-- WILDCARD CARD -->
     <section class="wildcard-card">
       <div class="wildcard-card-title">WILDCARD DOMAINS</div>
       <div class="wildcard-scroll">
-        <span class="wildcard-item">api.midtrans.com.dev.abdulstore.web.id</span>
-        <span class="wildcard-item">api24-normal-alisg.tiktokv.com.dev.abdulstore.web.id</span>
-        <span class="wildcard-item">api24-normal.tiktokv.com.dev.abdulstore.web.id</span>
-        <span class="wildcard-item">ava.game.naver.com.dev.abdulstore.web.id</span>
-        <span class="wildcard-item">azureinfo.microsoft.com.dev.abdulstore.web.id</span>
-        <span class="wildcard-item">cache.netflix.com.dev.abdulstore.web.id</span>
-        <span class="wildcard-item">cdn-cf.zoom.us.dev.abdulstore.web.id</span>
-        <span class="wildcard-item">collection.linefriends.com.dev.abdulstore.web.id</span>
-        <span class="wildcard-item">df.game.naver.com.dev.abdulstore.web.id</span>
-        <span class="wildcard-item">dl.cvs.freefiremobile.com.dev.abdulstore.web.id</span>
-        <span class="wildcard-item">dl.dir.freefiremobile.com.dev.abdulstore.web.id</span>
-        <span class="wildcard-item">edu.ruangguru.com.dev.abdulstore.web.id</span>
-        <span class="wildcard-item">go.appsflyer.com.dev.abdulstore.web.id</span>
-        <span class="wildcard-item">grabacademyportal.grab.com.dev.abdulstore.web.id</span>
-        <span class="wildcard-item">investor.fb.com.dev.abdulstore.web.id</span>
-        <span class="wildcard-item">investors.spotify.com.dev.abdulstore.web.id</span>
-        <span class="wildcard-item">onelink.seabank.co.id.dev.abdulstore.web.id</span>
-        <span class="wildcard-item">partner.catchplay.com.dev.abdulstore.web.id</span>
-        <span class="wildcard-item">quiz.int.vidio.com.dev.abdulstore.web.id</span>
-        <span class="wildcard-item">source.zoom.us.dev.abdulstore.web.id</span>
-        <span class="wildcard-item">support.appsflyer.com.dev.abdulstore.web.id</span>
-        <span class="wildcard-item">support.zoom.us.dev.abdulstore.web.id</span>
-        <span class="wildcard-item">web.poe.garena.com.dev.abdulstore.web.id</span>
-        <span class="wildcard-item">www.udemy.com.dev.abdulstore.web.id</span>
-        <span class="wildcard-item">zaintest.vuclip.com.dev.abdulstore.web.id</span>
+<pre class="wildcard-pre">api.midtrans.com.dev.abdulstore.web.id
+api24-normal-alisg.tiktokv.com.dev.abdulstore.web.id
+api24-normal.tiktokv.com.dev.abdulstore.web.id
+ava.game.naver.com.dev.abdulstore.web.id
+azureinfo.microsoft.com.dev.abdulstore.web.id
+cache.netflix.com.dev.abdulstore.web.id
+cdn-cf.zoom.us.dev.abdulstore.web.id
+collection.linefriends.com.dev.abdulstore.web.id
+df.game.naver.com.dev.abdulstore.web.id
+dl.cvs.freefiremobile.com.dev.abdulstore.web.id
+dl.dir.freefiremobile.com.dev.abdulstore.web.id
+edu.ruangguru.com.dev.abdulstore.web.id
+go.appsflyer.com.dev.abdulstore.web.id
+grabacademyportal.grab.com.dev.abdulstore.web.id
+investor.fb.com.dev.abdulstore.web.id
+investors.spotify.com.dev.abdulstore.web.id
+onelink.seabank.co.id.dev.abdulstore.web.id
+partner.catchplay.com.dev.abdulstore.web.id
+quiz.int.vidio.com.dev.abdulstore.web.id
+source.zoom.us.dev.abdulstore.web.id
+support.appsflyer.com.dev.abdulstore.web.id
+support.zoom.us.dev.abdulstore.web.id
+web.poe.garena.com.dev.abdulstore.web.id
+www.udemy.com.dev.abdulstore.web.id
+zaintest.vuclip.com.dev.abdulstore.web.id</pre>
       </div>
     </section>
 
@@ -1008,7 +1004,6 @@
     async function measurePing(el, url) {
       const start = performance.now();
       try {
-        // mode no-cors supaya tetap bisa jalan walaupun CORS dibatasi
         await fetch(url, { mode: "no-cors", cache: "no-store" });
         const elapsed = Math.round(performance.now() - start);
         el.textContent = elapsed + " ms";
@@ -1026,13 +1021,13 @@
         const url = el.getAttribute("data-ping-url");
         if (!url) return;
 
-        // Ping langsung sekali saat load
+        // Ping awal
         measurePing(el, url);
 
-        // Ping ulang tiap 1 detik
+        // Ping ulang tiap 2 detik
         setInterval(() => {
           measurePing(el, url);
-        }, 1000);
+        }, 2000);
       });
     }
 

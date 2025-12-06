@@ -1,82 +1,630 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>MyWebsite</title>
-    <!-- Tailwind + DaisyUI CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.24/dist/full.min.css" rel="stylesheet" type="text/css" />
-  </head>
-  <body class="bg-base-100 text-base-content">
-    <!-- Navbar -->
-    <div class="navbar bg-base-200 px-6 fixed">
-      <div class="flex-1">
-        <a class="btn btn-ghost text-xl">MyWebsite</a>
-      </div>
-      <div class="flex-none">
-        <ul class="menu menu-horizontal px-1">
-          <li><a href="#hero">Home</a></li>
-          <li><a href="#features">Features</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </div>
-    </div>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <title>Abdul Store Official</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    :root {
+      --bg-gradient: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+      --card-gradient: linear-gradient(135deg, rgba(255,255,255,0.15), rgba(0,0,0,0.4));
+      --accent: #ffeb3b;
+      --accent2: #00e5ff;
+      --accent3: #ff00c8;
+      --text-main: #fdfdfd;
+      --muted: #cfd8dc;
+    }
 
-    <!-- Hero Section -->
-    <section id="hero" class="hero min-h-screen bg-base-100">
-      <div class="hero-content text-center">
-        <div class="max-w-md">
-          <h1 class="text-5xl font-bold">Welcome to MyWebsite</h1>
-          <p class="py-6">Build beautiful websites effortlessly using Tailwind and DaisyUI.</p>
-          <a href="#features" class="btn btn-primary">Get Started</a>
-        </div>
-      </div>
-    </section>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-    <!-- Features Section -->
-    <section id="features" class="py-16 bg-base-200">
-      <div class="max-w-6xl mx-auto px-6">
-        <h2 class="text-3xl font-bold text-center mb-10">Features</h2>
-        <div class="grid md:grid-cols-3 gap-6">
-          <div class="card bg-base-100 shadow-xl">
-            <div class="card-body">
-              <h3 class="card-title">Fast Development</h3>
-              <p>Rapidly build and customize your UI with Tailwind CSS utility classes.</p>
-            </div>
-          </div>
-          <div class="card bg-base-100 shadow-xl">
-            <div class="card-body">
-              <h3 class="card-title">Beautiful UI</h3>
-              <p>DaisyUI components come styled and ready to use — just plug and play.</p>
-            </div>
-          </div>
-          <div class="card bg-base-100 shadow-xl">
-            <div class="card-body">
-              <h3 class="card-title">Fully Responsive</h3>
-              <p>Designed with mobile-first responsiveness in mind for all devices.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      min-height: 100vh;
+      color: var(--text-main);
+      background: #050816;
+      overflow-x: hidden;
+    }
 
-    <!-- Footer -->
-    <footer class="footer p-10 bg-base-300 text-base-content">
-      <aside>
-        <p>MyWebsite © 2025 - All rights reserved</p>
-      </aside>
-      <nav>
-        <h6 class="footer-title">Social</h6>
-        <div class="grid grid-flow-col gap-4">
-          <a href="#"
-            ><svg xmlns="http://www.w3.org/2000/svg" class="fill-current w-6 h-6" viewBox="0 0 24 24">
-              <path
-                d="M24 4.5a9.9 9.9 0 0 1-2.8.8 5 5 0 0 0 2.2-2.7 9.8 9.8 0 0 1-3.1 1.2 4.9 4.9 0 0 0-8.5 4.5A13.9 13.9 0 0 1 1.6 3.2a4.9 4.9 0 0 0 1.5 6.5A4.8 4.8 0 0 1 .9 9v.1a4.9 4.9 0 0 0 3.9 4.8 5 5 0 0 1-2.2.1 4.9 4.9 0 0 0 4.6 3.4 9.8 9.8 0 0 1-6.1 2.1A10 10 0 0 1 0 20a13.9 13.9 0 0 0 7.5 2.2c9 0 13.9-7.5 13.9-14v-.6A10 10 0 0 0 24 4.5z"
-              /></svg
-          ></a>
+    /* Background anim */
+    .bg-animated {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at 0% 0%, #ff00c8 0, transparent 40%),
+                  radial-gradient(circle at 100% 0%, #00e5ff 0, transparent 45%),
+                  radial-gradient(circle at 0% 100%, #ffeb3b 0, transparent 45%),
+                  radial-gradient(circle at 100% 100%, #7c4dff 0, transparent 45%);
+      opacity: 0.25;
+      mix-blend-mode: screen;
+      animation: floatBg 20s infinite alternate ease-in-out;
+      z-index: -2;
+    }
+
+    @keyframes floatBg {
+      0% {
+        transform: translate3d(0, 0, 0) scale(1);
+      }
+      100% {
+        transform: translate3d(0, -30px, 0) scale(1.05);
+      }
+    }
+
+    .bg-gradient-overlay {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(ellipse at top, rgba(255,255,255,0.05), transparent 60%),
+                  linear-gradient(180deg, rgba(0,0,0,0.7), rgba(0,0,0,1));
+      z-index: -1;
+    }
+
+    .wrapper {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 32px 16px 48px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 32px;
+      animation: fadeDown 0.9s ease-out both;
+    }
+
+    @keyframes fadeDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px) scale(0.98);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: rgba(0,0,0,0.6);
+      border: 1px solid rgba(255,255,255,0.15);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      margin-bottom: 12px;
+      backdrop-filter: blur(10px);
+    }
+
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #00e676;
+      box-shadow: 0 0 0 0 rgba(0,230,118,0.8);
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(0,230,118,0.8);
+      }
+      70% {
+        transform: scale(1.4);
+        box-shadow: 0 0 0 12px rgba(0,230,118,0);
+      }
+      100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(0,230,118,0);
+      }
+    }
+
+    h1 {
+      font-size: clamp(2.4rem, 4vw, 3rem);
+      margin-bottom: 6px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      background: linear-gradient(120deg, #fff, #ffe082, #ff80ab, #80d8ff);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 20px rgba(0,0,0,0.4);
+    }
+
+    .subtitle {
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .subtitle span {
+      color: #80d8ff;
+      font-weight: 600;
+    }
+
+    .glow-line {
+      width: 110px;
+      height: 3px;
+      margin: 18px auto 0;
+      border-radius: 999px;
+      background: linear-gradient(90deg, transparent, #ffeb3b, #ff00c8, transparent);
+      box-shadow: 0 0 16px rgba(255,255,255,0.6);
+    }
+
+    .info-text {
+      margin-top: 18px;
+      font-size: 13px;
+      color: #b0bec5;
+    }
+
+    .info-text strong {
+      color: #ffe082;
+    }
+
+    /* Cards wrapper */
+    .cards {
+      display: grid;
+      gap: 16px;
+      margin-top: 28px;
+    }
+
+    .config-card {
+      position: relative;
+      padding: 16px 16px 14px;
+      border-radius: 16px;
+      background: radial-gradient(circle at top left, rgba(255,255,255,0.12), transparent 50%),
+                  radial-gradient(circle at bottom right, rgba(0,0,0,0.5), transparent 50%),
+                  rgba(8, 20, 40, 0.9);
+      border: 1px solid rgba(255,255,255,0.12);
+      box-shadow:
+        0 14px 40px rgba(0,0,0,0.8),
+        0 0 0 1px rgba(255,255,255,0.05);
+      overflow: hidden;
+      backdrop-filter: blur(16px);
+      transform-origin: center;
+      animation: fadeUp 0.8s ease-out both;
+    }
+
+    .config-card::before {
+      content: "";
+      position: absolute;
+      inset: -1px;
+      border-radius: inherit;
+      background: conic-gradient(from 180deg, #ffeb3b, #ff00c8, #00e5ff, #ffeb3b);
+      opacity: 0;
+      transition: opacity 0.35s ease;
+      z-index: -1;
+    }
+
+    .config-card:hover::before {
+      opacity: 0.9;
+      animation: spinBorder 4s linear infinite;
+    }
+
+    @keyframes spinBorder {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(22px) scale(0.98);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .config-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+
+    .config-title {
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .config-tag {
+      font-size: 10px;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: rgba(0,0,0,0.55);
+      border: 1px solid rgba(255,255,255,0.18);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #b3e5fc;
+    }
+
+    .type-pill {
+      font-size: 11px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: linear-gradient(120deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+      border: 1px solid rgba(255,255,255,0.13);
+      color: #eceff1;
+    }
+
+    .type-pill span {
+      font-weight: 600;
+      color: #ffab40;
+    }
+
+    .config-body {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      font-size: 12px;
+      color: #b0bec5;
+    }
+
+    .config-body code {
+      font-family: "JetBrains Mono", "Fira Code", monospace;
+      font-size: 11px;
+      background: rgba(0,0,0,0.6);
+      padding: 8px 10px;
+      border-radius: 10px;
+      border: 1px dashed rgba(176,190,197,0.6);
+      word-break: break-all;
+      max-height: 80px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .config-body code::after {
+      content: "•••";
+      position: absolute;
+      right: 8px;
+      bottom: 4px;
+      font-size: 10px;
+      color: rgba(176,190,197,0.6);
+    }
+
+    .copy-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      justify-content: flex-end;
+    }
+
+    .copy-btn {
+      font-size: 12px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      background-image: linear-gradient(120deg, #ffeb3b, #ff00c8, #00e5ff);
+      background-size: 200% 200%;
+      color: #000;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.8);
+      transition: transform 0.15s ease-out, box-shadow 0.15s ease-out, background-position 0.4s ease;
+    }
+
+    .copy-btn:hover {
+      transform: translateY(-2px) scale(1.03);
+      background-position: 100% 0%;
+      box-shadow: 0 12px 24px rgba(0,0,0,0.9);
+    }
+
+    .copy-btn:active {
+      transform: translateY(0) scale(0.97);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.9);
+    }
+
+    .status-chip {
+      font-size: 11px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(0,0,0,0.7);
+      border: 1px solid rgba(255,255,255,0.15);
+      color: #b0bec5;
+      opacity: 0;
+      transform: translateY(6px);
+      pointer-events: none;
+      transition: opacity 0.2s ease, transform 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    }
+
+    .status-chip.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .status-chip.success {
+      color: #b9f6ca;
+      border-color: rgba(185,246,202,0.7);
+    }
+
+    .status-chip.error {
+      color: #ff8a80;
+      border-color: rgba(255,138,128,0.7);
+    }
+
+    footer {
+      margin-top: 32px;
+      text-align: center;
+      font-size: 11px;
+      color: #90a4ae;
+    }
+
+    footer span {
+      color: #ff80ab;
+    }
+
+    @media (min-width: 720px) {
+      .cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (hover: hover) {
+      .config-card:hover {
+        transform: translateY(-4px) rotate3d(1, 0.7, 0, 0.8deg);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-animated"></div>
+  <div class="bg-gradient-overlay"></div>
+
+  <div class="wrapper">
+    <header>
+      <div class="badge">
+        <div class="pulse-dot"></div>
+        <span>Premium VPN Panel</span>
+      </div>
+      <h1>Abdul Store Official</h1>
+      <p class="subtitle">
+        <span>Collaboration by Technic</span> · Fast · Secure · Colorful
+      </p>
+      <div class="glow-line"></div>
+      <p class="info-text">
+        Klik tombol <strong>COPY</strong> pada setiap baris untuk menyalin akun ke clipboard.
+      </p>
+    </header>
+
+    <main class="cards">
+      <!-- VMESS WS TLS -->
+      <section class="config-card" style="animation-delay: 0.05s;">
+        <div class="config-header">
+          <div>
+            <div class="config-title">
+              VMESS WS TLS
+              <span class="config-tag">TLS</span>
+            </div>
+            <div class="type-pill"><span>VMESS</span> · Websocket · 443</div>
+          </div>
         </div>
-      </nav>
+        <div class="config-body">
+          <code>vmess://eyJhZGQiOiJkZXYuYWJkdWxzdG9yZS53ZWIuaWQiLCJhaWQiOiIwIiwiYWxwbiI6IiIsImZwIjoiIiwiaG9zdCI6ImRldi5hYmR1bHN0b3JlLndlYi5pZCIsImlkIjoiNDYwYWMxNDItYmZhNS00NWY5LWEzYWQtZTk2ZmFjYTExNWNhIiwibmV0Ijoid3MiLCJwYXRoIjoiL3ZtZXNzIiwicG9ydCI6IjQ0MyIsInBzIjoiQWJkdWwgU3RvcmUgT2ZmaWNpYWwiLCJzY3kiOiJ6ZXJvIiwic25pIjoiZGV2LmFiZHVsc3RvcmUud2ViLmlkIiwidGxzIjoidGxzIiwidHlwZSI6Ii0tLSIsInYiOiIyIn0=</code>
+          <div class="copy-row">
+            <button class="copy-btn" data-key="vmess-ws-tls">Copy</button>
+            <span class="status-chip" id="status-vmess-ws-tls">Copied!</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- VMESS WS NON TLS -->
+      <section class="config-card" style="animation-delay: 0.1s;">
+        <div class="config-header">
+          <div>
+            <div class="config-title">
+              VMESS WS NON TLS
+              <span class="config-tag">NON TLS</span>
+            </div>
+            <div class="type-pill"><span>VMESS</span> · Websocket · 80</div>
+          </div>
+        </div>
+        <div class="config-body">
+          <code>vmess://eyJhZGQiOiJkZXYuYWJkdWxzdG9yZS53ZWIuaWQiLCJhaWQiOiIwIiwiYWxwbiI6IiIsImZwIjoiIiwiaG9zdCI6ImRldi5hYmR1bHN0b3JlLndlYi5pZCIsImlkIjoiNDYwYWMxNDItYmZhNS00NWY5LWEzYWQtZTk2ZmFjYTExNWNhIiwibmV0Ijoid3MiLCJwYXRoIjoiL3ZtZXNzIiwicG9ydCI6IjgwIiwicHMiOiJBYmR1bCBTdG9yZSBPZmZpY2lhbCIsInNjeSI6Inplcm8iLCJzbmkiOiJkZXYuYWJkdWxzdG9yZS53ZWIuaWQiLCJ0bHMiOiIiLCJ0eXBlIjoiLS0tIiwidiI6IjIifQ==</code>
+          <div class="copy-row">
+            <button class="copy-btn" data-key="vmess-ws-non-tls">Copy</button>
+            <span class="status-chip" id="status-vmess-ws-non-tls">Copied!</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- VLESS WS TLS -->
+      <section class="config-card" style="animation-delay: 0.15s;">
+        <div class="config-header">
+          <div>
+            <div class="config-title">
+              VLESS WS TLS
+              <span class="config-tag">TLS</span>
+            </div>
+            <div class="type-pill"><span>VLESS</span> · Websocket · 443</div>
+          </div>
+        </div>
+        <div class="config-body">
+          <code>vless://460ac142-bfa5-45f9-a3ad-e96faca115ca@dev.abdulstore.web.id:443?path=%2Fvless&amp;security=tls&amp;encryption=none&amp;host=dev.abdulstore.web.id&amp;type=ws&amp;sni=dev.abdulstore.web.id#Abdul%20Store%20Official</code>
+          <div class="copy-row">
+            <button class="copy-btn" data-key="vless-ws-tls">Copy</button>
+            <span class="status-chip" id="status-vless-ws-tls">Copied!</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- VLESS WS NON TLS -->
+      <section class="config-card" style="animation-delay: 0.2s;">
+        <div class="config-header">
+          <div>
+            <div class="config-title">
+              VLESS WS NON TLS
+              <span class="config-tag">NON TLS</span>
+            </div>
+            <div class="type-pill"><span>VLESS</span> · Websocket · 80</div>
+          </div>
+        </div>
+        <div class="config-body">
+          <code>vless://460ac142-bfa5-45f9-a3ad-e96faca115ca@dev.abdulstore.web.id:80?path=%2Fvless&amp;security=none&amp;encryption=none&amp;host=dev.abdulstore.web.id&amp;type=ws&amp;sni=dev.abdulstore.web.id#Abdul%20Store%20Official</code>
+          <div class="copy-row">
+            <button class="copy-btn" data-key="vless-ws-non-tls">Copy</button>
+            <span class="status-chip" id="status-vless-ws-non-tls">Copied!</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- TROJAN WS TLS -->
+      <section class="config-card" style="animation-delay: 0.25s;">
+        <div class="config-header">
+          <div>
+            <div class="config-title">
+              TROJAN WS TLS
+              <span class="config-tag">TLS</span>
+            </div>
+            <div class="type-pill"><span>TROJAN</span> · Websocket · 443</div>
+          </div>
+        </div>
+        <div class="config-body">
+          <code>trojan://460ac142-bfa5-45f9-a3ad-e96faca115ca@dev.abdulstore.web.id:443?path=%2Ftrojan&amp;security=tls&amp;host=dev.abdulstore.web.id&amp;type=ws&amp;sni=dev.abdulstore.web.id#Abdul%20Store%20Official</code>
+          <div class="copy-row">
+            <button class="copy-btn" data-key="trojan-ws-tls">Copy</button>
+            <span class="status-chip" id="status-trojan-ws-tls">Copied!</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- TROJAN WS NON TLS -->
+      <section class="config-card" style="animation-delay: 0.3s;">
+        <div class="config-header">
+          <div>
+            <div class="config-title">
+              TROJAN WS NON TLS
+              <span class="config-tag">NON TLS</span>
+            </div>
+            <div class="type-pill"><span>TROJAN</span> · Websocket · 80</div>
+          </div>
+        </div>
+        <div class="config-body">
+          <code>trojan://460ac142-bfa5-45f9-a3ad-e96faca115ca@dev.abdulstore.web.id:80?path=%2Ftrojan&amp;security=none&amp;host=dev.abdulstore.web.id&amp;type=ws&amp;sni=dev.abdulstore.web.id#Abdul%20Store%20Official</code>
+          <div class="copy-row">
+            <button class="copy-btn" data-key="trojan-ws-non-tls">Copy</button>
+            <span class="status-chip" id="status-trojan-ws-non-tls">Copied!</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- SHADOWSOCKS WS TLS -->
+      <section class="config-card" style="animation-delay: 0.35s;">
+        <div class="config-header">
+          <div>
+            <div class="config-title">
+              SHADOWSOCKS WS TLS
+              <span class="config-tag">TLS</span>
+            </div>
+            <div class="type-pill"><span>SS</span> · Websocket · 443</div>
+          </div>
+        </div>
+        <div class="config-body">
+          <code>ss://bm9uZTo0NjBhYzE0Mi1iZmE1LTQ1ZjktYTNhZC1lOTZmYWNhMTE1Y2E=@dev.abdulstore.web.id:443?path=%2Fshadowsocks&amp;security=tls&amp;host=dev.abdulstore.web.id&amp;type=ws&amp;sni=dev.abdulstore.web.id#Abdul+Store+Official</code>
+          <div class="copy-row">
+            <button class="copy-btn" data-key="ss-ws-tls">Copy</button>
+            <span class="status-chip" id="status-ss-ws-tls">Copied!</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- SHADOWSOCKS WS NON TLS -->
+      <section class="config-card" style="animation-delay: 0.4s;">
+        <div class="config-header">
+          <div>
+            <div class="config-title">
+              SHADOWSOCKS WS NON TLS
+              <span class="config-tag">NON TLS</span>
+            </div>
+            <div class="type-pill"><span>SS</span> · Websocket · 80</div>
+          </div>
+        </div>
+        <div class="config-body">
+          <code>ss://bm9uZTo0NjBhYzE0Mi1iZmE1LTQ1ZjktYTNhZC1lOTZmYWNhMTE1Y2E=@dev.abdulstore.web.id:80?path=%2Fshadowsocks&amp;security=none&amp;host=dev.abdulstore.web.id&amp;type=ws&amp;sni=dev.abdulstore.web.id#Abdul+Store+Official</code>
+          <div class="copy-row">
+            <button class="copy-btn" data-key="ss-ws-non-tls">Copy</button>
+            <span class="status-chip" id="status-ss-ws-non-tls">Copied!</span>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      © <span>Abdul Store Official</span> · Crafted with ❤️ · Collaboration by Technic
     </footer>
-  </body>
+  </div>
+
+  <script>
+    // Map key -> full code
+    const configMap = {
+      "vmess-ws-tls": "vmess://eyJhZGQiOiJkZXYuYWJkdWxzdG9yZS53ZWIuaWQiLCJhaWQiOiIwIiwiYWxwbiI6IiIsImZwIjoiIiwiaG9zdCI6ImRldi5hYmR1bHN0b3JlLndlYi5pZCIsImlkIjoiNDYwYWMxNDItYmZhNS00NWY5LWEzYWQtZTk2ZmFjYTExNWNhIiwibmV0Ijoid3MiLCJwYXRoIjoiL3ZtZXNzIiwicG9ydCI6IjQ0MyIsInBzIjoiQWJkdWwgU3RvcmUgT2ZmaWNpYWwiLCJzY3kiOiJ6ZXJvIiwic25pIjoiZGV2LmFiZHVsc3RvcmUud2ViLmlkIiwidGxzIjoidGxzIiwidHlwZSI6Ii0tLSIsInYiOiIyIn0=",
+      "vmess-ws-non-tls": "vmess://eyJhZGQiOiJkZXYuYWJkdWxzdG9yZS53ZWIuaWQiLCJhaWQiOiIwIiwiYWxwbiI6IiIsImZwIjoiIiwiaG9zdCI6ImRldi5hYmR1bHN0b3JlLndlYi5pZCIsImlkIjoiNDYwYWMxNDItYmZhNS00NWY5LWEzYWQtZTk2ZmFjYTExNWNhIiwibmV0Ijoid3MiLCJwYXRoIjoiL3ZtZXNzIiwicG9ydCI6IjgwIiwicHMiOiJBYmR1bCBTdG9yZSBPZmZpY2lhbCIsInNjeSI6Inplcm8iLCJzbmkiOiJkZXYuYWJkdWxzdG9yZS53ZWIuaWQiLCJ0bHMiOiIiLCJ0eXBlIjoiLS0tIiwidiI6IjIifQ==",
+      "vless-ws-tls": "vless://460ac142-bfa5-45f9-a3ad-e96faca115ca@dev.abdulstore.web.id:443?path=%2Fvless&security=tls&encryption=none&host=dev.abdulstore.web.id&type=ws&sni=dev.abdulstore.web.id#Abdul%20Store%20Official",
+      "vless-ws-non-tls": "vless://460ac142-bfa5-45f9-a3ad-e96faca115ca@dev.abdulstore.web.id:80?path=%2Fvless&security=none&encryption=none&host=dev.abdulstore.web.id&type=ws&sni=dev.abdulstore.web.id#Abdul%20Store%20Official",
+      "trojan-ws-tls": "trojan://460ac142-bfa5-45f9-a3ad-e96faca115ca@dev.abdulstore.web.id:443?path=%2Ftrojan&security=tls&host=dev.abdulstore.web.id&type=ws&sni=dev.abdulstore.web.id#Abdul%20Store%20Official",
+      "trojan-ws-non-tls": "trojan://460ac142-bfa5-45f9-a3ad-e96faca115ca@dev.abdulstore.web.id:80?path=%2Ftrojan&security=none&host=dev.abdulstore.web.id&type=ws&sni=dev.abdulstore.web.id#Abdul%20Store%20Official",
+      "ss-ws-tls": "ss://bm9uZTo0NjBhYzE0Mi1iZmE1LTQ1ZjktYTNhZC1lOTZmYWNhMTE1Y2E=@dev.abdulstore.web.id:443?path=%2Fshadowsocks&security=tls&host=dev.abdulstore.web.id&type=ws&sni=dev.abdulstore.web.id#Abdul+Store+Official",
+      "ss-ws-non-tls": "ss://bm9uZTo0NjBhYzE0Mi1iZmE1LTQ1ZjktYTNhZC1lOTZmYWNhMTE1Y2E=@dev.abdulstore.web.id:80?path=%2Fshadowsocks&security=none&host=dev.abdulstore.web.id&type=ws&sni=dev.abdulstore.web.id#Abdul+Store+Official"
+    };
+
+    function showStatus(key, type) {
+      const el = document.getElementById("status-" + key);
+      if (!el) return;
+      el.classList.remove("success", "error");
+      el.classList.add("visible");
+      if (type === "success") {
+        el.textContent = "Copied!";
+        el.classList.add("success");
+      } else {
+        el.textContent = "Gagal copy";
+        el.classList.add("error");
+      }
+      clearTimeout(el._timeoutId);
+      el._timeoutId = setTimeout(() => {
+        el.classList.remove("visible", "success", "error");
+      }, 1800);
+    }
+
+    async function handleCopyClick(e) {
+      const btn = e.target.closest(".copy-btn");
+      if (!btn) return;
+      const key = btn.getAttribute("data-key");
+      const text = configMap[key];
+      if (!text) return;
+
+      try {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          await navigator.clipboard.writeText(text);
+        } else {
+          // fallback
+          const temp = document.createElement("textarea");
+          temp.value = text;
+          document.body.appendChild(temp);
+          temp.select();
+          document.execCommand("copy");
+          document.body.removeChild(temp);
+        }
+        showStatus(key, "success");
+      } catch (err) {
+        console.error(err);
+        showStatus(key, "error");
+      }
+    }
+
+    document.addEventListener("click", handleCopyClick);
+  </script>
+</body>
 </html>

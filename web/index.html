@@ -60,7 +60,7 @@
       z-index: -2;
     }
 
-    /* Snow layer */
+    /* Snow layer – lebih banyak salju */
     .snow-layer,
     .snow-layer::before,
     .snow-layer::after {
@@ -68,35 +68,38 @@
       inset: 0;
       pointer-events: none;
       background-repeat: repeat;
-      background-size: 240px 240px;
+      background-size: 180px 180px;
       z-index: -1;
     }
 
     .snow-layer {
       background-image:
-        radial-gradient(2px 2px at 20px 20px, rgba(255,255,255,0.9) 50%, transparent 51%),
-        radial-gradient(2px 2px at 80px 60px, rgba(255,255,255,0.8) 50%, transparent 51%),
-        radial-gradient(2px 2px at 140px 120px, rgba(255,255,255,0.7) 50%, transparent 51%);
-      animation: snow 22s linear infinite;
-      opacity: 0.7;
+        radial-gradient(2px 2px at 20px 20px, rgba(255,255,255,0.95) 50%, transparent 51%),
+        radial-gradient(2px 2px at 80px 60px, rgba(255,255,255,0.9) 50%, transparent 51%),
+        radial-gradient(2px 2px at 140px 120px, rgba(255,255,255,0.85) 50%, transparent 51%),
+        radial-gradient(2px 2px at 40px 140px, rgba(255,255,255,0.8) 50%, transparent 51%);
+      animation: snow 18s linear infinite;
+      opacity: 0.8;
     }
 
     .snow-layer::before {
       content: "";
       background-image:
         radial-gradient(2px 2px at 40px 40px, rgba(255,255,255,0.8) 50%, transparent 51%),
-        radial-gradient(2px 2px at 120px 100px, rgba(255,255,255,0.6) 50%, transparent 51%);
-      animation: snow 30s linear infinite;
-      opacity: 0.6;
+        radial-gradient(2px 2px at 120px 100px, rgba(255,255,255,0.7) 50%, transparent 51%),
+        radial-gradient(2px 2px at 160px 20px, rgba(255,255,255,0.7) 50%, transparent 51%);
+      animation: snow 26s linear infinite;
+      opacity: 0.7;
     }
 
     .snow-layer::after {
       content: "";
       background-image:
         radial-gradient(1.5px 1.5px at 60px 10px, rgba(255,255,255,0.7) 50%, transparent 51%),
-        radial-gradient(1.5px 1.5px at 180px 90px, rgba(255,255,255,0.5) 50%, transparent 51%);
-      animation: snow 40s linear infinite;
-      opacity: 0.5;
+        radial-gradient(1.5px 1.5px at 180px 90px, rgba(255,255,255,0.6) 50%, transparent 51%),
+        radial-gradient(1.5px 1.5px at 100px 160px, rgba(255,255,255,0.6) 50%, transparent 51%);
+      animation: snow 34s linear infinite;
+      opacity: 0.6;
     }
 
     @keyframes snow {
@@ -243,7 +246,7 @@
       position: absolute;
       inset: -1px;
       border-radius: inherit;
-      background: conic-gradient(from 200deg, #ffeb3b, #ff00c8, #00e5ff, #ffeb3b);
+      background: conic-gradient(from 200deg, #00e676, #00e5ff, #b2ff59, #00e676);
       opacity: 0.25;
       mix-blend-mode: screen;
       filter: blur(18px);
@@ -259,25 +262,25 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      font-size: 13px;
+      font-size: 14px;
       letter-spacing: 0.16em;
       text-transform: uppercase;
       color: #eceff1;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
     }
 
     .details-dot {
       width: 18px;
       height: 18px;
       border-radius: 999px;
-      background: radial-gradient(circle at 30% 30%, #ffffff, #ffeb3b, #ff00c8);
-      box-shadow: 0 0 18px rgba(255,255,255,0.8);
+      background: radial-gradient(circle at 30% 30%, #ffffff, #00e676, #00bfa5);
+      box-shadow: 0 0 18px rgba(0,255,160,0.9);
     }
 
     .details-grid {
       display: grid;
       gap: 6px 16px;
-      font-size: 12px;
+      font-size: 13px;
       color: #cfd8dc;
     }
 
@@ -297,44 +300,82 @@
     }
 
     .details-label {
-      min-width: 92px;
-      max-width: 120px;
-      font-weight: 600;
+      min-width: 100px;
+      max-width: 130px;
+      font-weight: 700;
       color: #ffe082;
-      font-size: 11px;
+      font-size: 12px;
       text-transform: uppercase;
       letter-spacing: 0.06em;
     }
 
     .details-value {
       flex: 1;
-      font-size: 12px;
+      font-size: 13px;
     }
 
-    .details-value code {
+    .details-value-strong {
       font-family: "JetBrains Mono", "Fira Code", monospace;
-      font-size: 11px;
-      background: rgba(0,0,0,0.65);
-      padding: 4px 7px;
-      border-radius: 8px;
-      border: 1px dashed rgba(176,190,197,0.6);
-      white-space: pre-wrap;
-      word-break: break-all;
-      display: inline-block;
+      font-weight: 600;
     }
 
-    .wildcard-box {
+    /* WILDCARD CARD TERPISAH */
+    .wildcard-card {
+      margin-top: 14px;
+      padding: 16px 16px 14px;
+      border-radius: 18px;
+      background: radial-gradient(circle at top right, rgba(255,255,255,0.14), transparent 55%),
+                  radial-gradient(circle at bottom left, rgba(0,0,0,0.7), transparent 55%),
+                  rgba(8, 20, 40, 0.96);
+      border: 1px solid rgba(255,255,255,0.18);
+      box-shadow:
+        0 16px 44px rgba(0,0,0,0.85),
+        0 0 0 1px rgba(255,255,255,0.06);
+      backdrop-filter: blur(18px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .wildcard-card-title {
+      font-size: 13px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #eceff1;
+      margin-bottom: 10px;
+    }
+
+    .wildcard-scroll {
       margin-top: 4px;
-      padding: 8px 10px;
-      border-radius: 10px;
+      padding: 10px 8px;
+      border-radius: 12px;
       background: rgba(2, 12, 30, 0.96);
-      border: 1px dashed rgba(144,164,174,0.8);
+      border: 1px dashed rgba(144,164,174,0.9);
+      overflow-x: auto;
+      overflow-y: hidden;
+      white-space: nowrap;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .wildcard-scroll::-webkit-scrollbar {
+      height: 6px;
+    }
+
+    .wildcard-scroll::-webkit-scrollbar-thumb {
+      background: rgba(255,255,255,0.35);
+      border-radius: 999px;
+    }
+
+    .wildcard-item {
+      display: inline-block;
       font-family: "JetBrains Mono", "Fira Code", monospace;
       font-size: 11px;
-      line-height: 1.45;
-      white-space: pre-wrap;
-      word-break: break-all;
-      /* tidak ada max-height supaya tidak terpotong */
+      color: #eceff1;
+      padding: 5px 10px;
+      margin-right: 8px;
+      margin-bottom: 4px;
+      border-radius: 999px;
+      background: rgba(22,35,60,0.9);
+      border: 1px solid rgba(176,190,197,0.7);
     }
 
     /* CONFIG CARDS */
@@ -366,7 +407,7 @@
       position: absolute;
       inset: -1px;
       border-radius: inherit;
-      background: linear-gradient(135deg, rgba(255,255,255,0.25), transparent 40%, rgba(0,0,0,0.5));
+      background: linear-gradient(135deg, rgba(255,255,255,0.22), transparent 40%, rgba(0,0,0,0.6));
       opacity: 0.4;
       pointer-events: none;
       z-index: -1;
@@ -389,6 +430,12 @@
       justify-content: space-between;
       gap: 12px;
       margin-bottom: 10px;
+    }
+
+    .config-title-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
     }
 
     .config-title {
@@ -424,6 +471,30 @@
     .type-pill span {
       font-weight: 600;
       color: #ffab40;
+    }
+
+    .ping-pill {
+      font-size: 11px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(0,0,0,0.65);
+      border: 1px solid rgba(144,202,249,0.8);
+      color: #e1f5fe;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .ping-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #00e676;
+      box-shadow: 0 0 8px rgba(0,230,118,0.9);
+    }
+
+    .ping-value.ping-error {
+      color: #ff8a80;
     }
 
     .config-body {
@@ -600,8 +671,8 @@
 
           <div class="details-row">
             <div class="details-label">ID / Pass</div>
-            <div class="details-value">
-              <code>460ac142-bfa5-45f9-a3ad-e96faca115ca</code>
+            <div class="details-value details-value-strong">
+              460ac142-bfa5-45f9-a3ad-e96faca115ca
             </div>
           </div>
           <div class="details-row">
@@ -631,40 +702,39 @@
             <div class="details-label">Path</div>
             <div class="details-value">/vmess, /vless, /trojan, /shadowsocks</div>
           </div>
-
-          <div class="details-row full">
-            <div class="details-label">Wilcard</div>
-            <div class="details-value">
-              <div class="wildcard-box">
-api.midtrans.com.dev.abdulstore.web.id
-api24-normal-alisg.tiktokv.com.dev.abdulstore.web.id
-api24-normal.tiktokv.com.dev.abdulstore.web.id
-ava.game.naver.com.dev.abdulstore.web.id
-azureinfo.microsoft.com.dev.abdulstore.web.id
-cache.netflix.com.dev.abdulstore.web.id
-cdn-cf.zoom.us.dev.abdulstore.web.id
-collection.linefriends.com.dev.abdulstore.web.id
-df.game.naver.com.dev.abdulstore.web.id
-dl.cvs.freefiremobile.com.dev.abdulstore.web.id
-dl.dir.freefiremobile.com.dev.abdulstore.web.id
-edu.ruangguru.com.dev.abdulstore.web.id
-go.appsflyer.com.dev.abdulstore.web.id
-grabacademyportal.grab.com.dev.abdulstore.web.id
-investor.fb.com.dev.abdulstore.web.id
-investors.spotify.com.dev.abdulstore.web.id
-onelink.seabank.co.id.dev.abdulstore.web.id
-partner.catchplay.com.dev.abdulstore.web.id
-quiz.int.vidio.com.dev.abdulstore.web.id
-source.zoom.us.dev.abdulstore.web.id
-support.appsflyer.com.dev.abdulstore.web.id
-support.zoom.us.dev.abdulstore.web.id
-web.poe.garena.com.dev.abdulstore.web.id
-www.udemy.com.dev.abdulstore.web.id
-zaintest.vuclip.com.dev.abdulstore.web.id
-              </div>
-            </div>
-          </div>
         </div>
+      </div>
+    </section>
+
+    <!-- WILDCARD CARD TERPISAH -->
+    <section class="wildcard-card">
+      <div class="wildcard-card-title">WILDCARD DOMAINS</div>
+      <div class="wildcard-scroll">
+        <span class="wildcard-item">api.midtrans.com.dev.abdulstore.web.id</span>
+        <span class="wildcard-item">api24-normal-alisg.tiktokv.com.dev.abdulstore.web.id</span>
+        <span class="wildcard-item">api24-normal.tiktokv.com.dev.abdulstore.web.id</span>
+        <span class="wildcard-item">ava.game.naver.com.dev.abdulstore.web.id</span>
+        <span class="wildcard-item">azureinfo.microsoft.com.dev.abdulstore.web.id</span>
+        <span class="wildcard-item">cache.netflix.com.dev.abdulstore.web.id</span>
+        <span class="wildcard-item">cdn-cf.zoom.us.dev.abdulstore.web.id</span>
+        <span class="wildcard-item">collection.linefriends.com.dev.abdulstore.web.id</span>
+        <span class="wildcard-item">df.game.naver.com.dev.abdulstore.web.id</span>
+        <span class="wildcard-item">dl.cvs.freefiremobile.com.dev.abdulstore.web.id</span>
+        <span class="wildcard-item">dl.dir.freefiremobile.com.dev.abdulstore.web.id</span>
+        <span class="wildcard-item">edu.ruangguru.com.dev.abdulstore.web.id</span>
+        <span class="wildcard-item">go.appsflyer.com.dev.abdulstore.web.id</span>
+        <span class="wildcard-item">grabacademyportal.grab.com.dev.abdulstore.web.id</span>
+        <span class="wildcard-item">investor.fb.com.dev.abdulstore.web.id</span>
+        <span class="wildcard-item">investors.spotify.com.dev.abdulstore.web.id</span>
+        <span class="wildcard-item">onelink.seabank.co.id.dev.abdulstore.web.id</span>
+        <span class="wildcard-item">partner.catchplay.com.dev.abdulstore.web.id</span>
+        <span class="wildcard-item">quiz.int.vidio.com.dev.abdulstore.web.id</span>
+        <span class="wildcard-item">source.zoom.us.dev.abdulstore.web.id</span>
+        <span class="wildcard-item">support.appsflyer.com.dev.abdulstore.web.id</span>
+        <span class="wildcard-item">support.zoom.us.dev.abdulstore.web.id</span>
+        <span class="wildcard-item">web.poe.garena.com.dev.abdulstore.web.id</span>
+        <span class="wildcard-item">www.udemy.com.dev.abdulstore.web.id</span>
+        <span class="wildcard-item">zaintest.vuclip.com.dev.abdulstore.web.id</span>
       </div>
     </section>
 
@@ -673,12 +743,17 @@ zaintest.vuclip.com.dev.abdulstore.web.id
       <!-- VMESS WS TLS -->
       <section class="config-card" style="animation-delay: 0.05s;">
         <div class="config-header">
-          <div>
+          <div class="config-title-wrapper">
             <div class="config-title">
               VMESS WS TLS
               <span class="config-tag">TLS</span>
             </div>
             <div class="type-pill"><span>VMESS</span> · Websocket · 443</div>
+          </div>
+          <div class="ping-pill">
+            <span class="ping-dot"></span>
+            <span>Ping:</span>
+            <span class="ping-value" data-ping-url="https://dev.abdulstore.web.id/">…</span>
           </div>
         </div>
         <div class="config-body">
@@ -693,12 +768,17 @@ zaintest.vuclip.com.dev.abdulstore.web.id
       <!-- VMESS WS NON TLS -->
       <section class="config-card" style="animation-delay: 0.1s;">
         <div class="config-header">
-          <div>
+          <div class="config-title-wrapper">
             <div class="config-title">
               VMESS WS NON TLS
               <span class="config-tag">NON TLS</span>
             </div>
             <div class="type-pill"><span>VMESS</span> · Websocket · 80</div>
+          </div>
+          <div class="ping-pill">
+            <span class="ping-dot"></span>
+            <span>Ping:</span>
+            <span class="ping-value" data-ping-url="https://dev.abdulstore.web.id/">…</span>
           </div>
         </div>
         <div class="config-body">
@@ -713,12 +793,17 @@ zaintest.vuclip.com.dev.abdulstore.web.id
       <!-- VLESS WS TLS -->
       <section class="config-card" style="animation-delay: 0.15s;">
         <div class="config-header">
-          <div>
+          <div class="config-title-wrapper">
             <div class="config-title">
               VLESS WS TLS
               <span class="config-tag">TLS</span>
             </div>
             <div class="type-pill"><span>VLESS</span> · Websocket · 443</div>
+          </div>
+          <div class="ping-pill">
+            <span class="ping-dot"></span>
+            <span>Ping:</span>
+            <span class="ping-value" data-ping-url="https://dev.abdulstore.web.id/">…</span>
           </div>
         </div>
         <div class="config-body">
@@ -733,12 +818,17 @@ zaintest.vuclip.com.dev.abdulstore.web.id
       <!-- VLESS WS NON TLS -->
       <section class="config-card" style="animation-delay: 0.2s;">
         <div class="config-header">
-          <div>
+          <div class="config-title-wrapper">
             <div class="config-title">
               VLESS WS NON TLS
               <span class="config-tag">NON TLS</span>
             </div>
             <div class="type-pill"><span>VLESS</span> · Websocket · 80</div>
+          </div>
+          <div class="ping-pill">
+            <span class="ping-dot"></span>
+            <span>Ping:</span>
+            <span class="ping-value" data-ping-url="https://dev.abdulstore.web.id/">…</span>
           </div>
         </div>
         <div class="config-body">
@@ -753,12 +843,17 @@ zaintest.vuclip.com.dev.abdulstore.web.id
       <!-- TROJAN WS TLS -->
       <section class="config-card" style="animation-delay: 0.25s;">
         <div class="config-header">
-          <div>
+          <div class="config-title-wrapper">
             <div class="config-title">
               TROJAN WS TLS
               <span class="config-tag">TLS</span>
             </div>
             <div class="type-pill"><span>TROJAN</span> · Websocket · 443</div>
+          </div>
+          <div class="ping-pill">
+            <span class="ping-dot"></span>
+            <span>Ping:</span>
+            <span class="ping-value" data-ping-url="https://dev.abdulstore.web.id/">…</span>
           </div>
         </div>
         <div class="config-body">
@@ -773,12 +868,17 @@ zaintest.vuclip.com.dev.abdulstore.web.id
       <!-- TROJAN WS NON TLS -->
       <section class="config-card" style="animation-delay: 0.3s;">
         <div class="config-header">
-          <div>
+          <div class="config-title-wrapper">
             <div class="config-title">
               TROJAN WS NON TLS
               <span class="config-tag">NON TLS</span>
             </div>
             <div class="type-pill"><span>TROJAN</span> · Websocket · 80</div>
+          </div>
+          <div class="ping-pill">
+            <span class="ping-dot"></span>
+            <span>Ping:</span>
+            <span class="ping-value" data-ping-url="https://dev.abdulstore.web.id/">…</span>
           </div>
         </div>
         <div class="config-body">
@@ -793,12 +893,17 @@ zaintest.vuclip.com.dev.abdulstore.web.id
       <!-- SHADOWSOCKS WS TLS -->
       <section class="config-card" style="animation-delay: 0.35s;">
         <div class="config-header">
-          <div>
+          <div class="config-title-wrapper">
             <div class="config-title">
               SHADOWSOCKS WS TLS
               <span class="config-tag">TLS</span>
             </div>
             <div class="type-pill"><span>SS</span> · Websocket · 443</div>
+          </div>
+          <div class="ping-pill">
+            <span class="ping-dot"></span>
+            <span>Ping:</span>
+            <span class="ping-value" data-ping-url="https://dev.abdulstore.web.id/">…</span>
           </div>
         </div>
         <div class="config-body">
@@ -813,12 +918,17 @@ zaintest.vuclip.com.dev.abdulstore.web.id
       <!-- SHADOWSOCKS WS NON TLS -->
       <section class="config-card" style="animation-delay: 0.4s;">
         <div class="config-header">
-          <div>
+          <div class="config-title-wrapper">
             <div class="config-title">
               SHADOWSOCKS WS NON TLS
               <span class="config-tag">NON TLS</span>
             </div>
             <div class="type-pill"><span>SS</span> · Websocket · 80</div>
+          </div>
+          <div class="ping-pill">
+            <span class="ping-dot"></span>
+            <span>Ping:</span>
+            <span class="ping-value" data-ping-url="https://dev.abdulstore.web.id/">…</span>
           </div>
         </div>
         <div class="config-body">
@@ -893,6 +1003,40 @@ zaintest.vuclip.com.dev.abdulstore.web.id
     }
 
     document.addEventListener("click", handleCopyClick);
+
+    // --- PING OTOMATIS (perkiraan latency lewat fetch) ---
+    async function measurePing(el, url) {
+      const start = performance.now();
+      try {
+        // mode no-cors supaya tetap bisa jalan walaupun CORS dibatasi
+        await fetch(url, { mode: "no-cors", cache: "no-store" });
+        const elapsed = Math.round(performance.now() - start);
+        el.textContent = elapsed + " ms";
+        el.classList.remove("ping-error");
+      } catch (err) {
+        console.error("Ping error:", err);
+        el.textContent = "timeout";
+        el.classList.add("ping-error");
+      }
+    }
+
+    function startPingLoop() {
+      const pingEls = document.querySelectorAll(".ping-value");
+      pingEls.forEach((el) => {
+        const url = el.getAttribute("data-ping-url");
+        if (!url) return;
+
+        // Ping langsung sekali saat load
+        measurePing(el, url);
+
+        // Ping ulang tiap 1 detik
+        setInterval(() => {
+          measurePing(el, url);
+        }, 1000);
+      });
+    }
+
+    window.addEventListener("load", startPingLoop);
   </script>
 </body>
 </html>

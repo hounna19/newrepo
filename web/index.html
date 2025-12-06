@@ -68,7 +68,7 @@
 
     header {
       text-align: center;
-      margin-bottom: 32px;
+      margin-bottom: 24px;
       animation: fadeDown 0.9s ease-out both;
     }
 
@@ -138,10 +138,19 @@
     .subtitle {
       font-size: 14px;
       color: var(--muted);
+      line-height: 1.4;
     }
 
     .subtitle span {
       color: #80d8ff;
+      font-weight: 600;
+    }
+
+    .design-credit {
+      display: inline-block;
+      margin-top: 2px;
+      font-size: 12px;
+      color: #ff80ab;
       font-weight: 600;
     }
 
@@ -164,11 +173,135 @@
       color: #ffe082;
     }
 
+    /* Details card */
+    .details-card {
+      margin-top: 20px;
+      padding: 16px 16px 14px;
+      border-radius: 18px;
+      background: radial-gradient(circle at top left, rgba(255,255,255,0.16), transparent 55%),
+                  radial-gradient(circle at bottom right, rgba(0,0,0,0.7), transparent 55%),
+                  rgba(8, 20, 40, 0.95);
+      border: 1px solid rgba(255,255,255,0.18);
+      box-shadow:
+        0 16px 44px rgba(0,0,0,0.85),
+        0 0 0 1px rgba(255,255,255,0.06);
+      backdrop-filter: blur(18px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .details-card::before {
+      content: "";
+      position: absolute;
+      inset: -1px;
+      border-radius: inherit;
+      background: conic-gradient(from 200deg, #ffeb3b, #ff00c8, #00e5ff, #ffeb3b);
+      opacity: 0.25;
+      mix-blend-mode: screen;
+      filter: blur(18px);
+      pointer-events: none;
+    }
+
+    .details-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .details-title {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #eceff1;
+      margin-bottom: 10px;
+    }
+
+    .details-dot {
+      width: 18px;
+      height: 18px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 30%, #ffffff, #ffeb3b, #ff00c8);
+      box-shadow: 0 0 18px rgba(255,255,255,0.8);
+    }
+
+    .details-grid {
+      display: grid;
+      gap: 6px 16px;
+      font-size: 12px;
+      color: #cfd8dc;
+    }
+
+    @media (min-width: 720px) {
+      .details-grid {
+        grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.3fr);
+      }
+      .details-grid .full {
+        grid-column: 1 / -1;
+      }
+    }
+
+    .details-row {
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+    }
+
+    .details-label {
+      min-width: 92px;
+      max-width: 120px;
+      font-weight: 600;
+      color: #ffe082;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .details-value {
+      flex: 1;
+      font-size: 12px;
+    }
+
+    .details-value code {
+      font-family: "JetBrains Mono", "Fira Code", monospace;
+      font-size: 11px;
+      background: rgba(0,0,0,0.65);
+      padding: 4px 7px;
+      border-radius: 8px;
+      border: 1px dashed rgba(176,190,197,0.6);
+      white-space: pre-wrap;
+      word-break: break-all;
+      display: inline-block;
+    }
+
+    .wildcard-box {
+      margin-top: 4px;
+      padding: 8px 10px;
+      border-radius: 10px;
+      background: rgba(2, 12, 30, 0.96);
+      border: 1px dashed rgba(144,164,174,0.8);
+      max-height: 160px;
+      overflow: auto;
+      font-family: "JetBrains Mono", "Fira Code", monospace;
+      font-size: 11px;
+      line-height: 1.45;
+    }
+
+    .wildcard-box::-webkit-scrollbar {
+      width: 5px;
+    }
+
+    .wildcard-box::-webkit-scrollbar-thumb {
+      background: rgba(255,255,255,0.3);
+      border-radius: 999px;
+    }
+
     /* Cards wrapper */
     .cards {
       display: grid;
       gap: 16px;
-      margin-top: 28px;
+      margin-top: 24px;
     }
 
     .config-card {
@@ -280,18 +413,8 @@
       border-radius: 10px;
       border: 1px dashed rgba(176,190,197,0.6);
       word-break: break-all;
-      max-height: 80px;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .config-body code::after {
-      content: "•••";
-      position: absolute;
-      right: 8px;
-      bottom: 4px;
-      font-size: 10px;
-      color: rgba(176,190,197,0.6);
+      white-space: pre-wrap;
+      display: block;
     }
 
     .copy-row {
@@ -388,18 +511,134 @@
     <header>
       <div class="badge">
         <div class="pulse-dot"></div>
-        <span>Premium VPN Panel</span>
+        <span>ALL XRAY PANEL</span>
       </div>
       <h1>Abdul Store Official</h1>
       <p class="subtitle">
-        <span>Collaboration by Technic</span> · Fast · Secure · Colorful
+        <span>Collaboration by Technic</span> · Fast · Secure · Colorful<br />
+        <span class="design-credit">Design UI: Technic Developer</span>
       </p>
       <div class="glow-line"></div>
       <p class="info-text">
-        Klik tombol <strong>COPY</strong> pada setiap baris untuk menyalin akun ke clipboard.
+        Click the <strong>COPY</strong> button on each row to copy the account to your clipboard.
       </p>
     </header>
 
+    <!-- DETAILS CARD -->
+    <section class="details-card">
+      <div class="details-inner">
+        <div class="details-title">
+          <div class="details-dot"></div>
+          SERVER INFORMATION
+        </div>
+        <div class="details-grid">
+          <div class="details-row">
+            <div class="details-label">Remarks</div>
+            <div class="details-value">Abdul Store Official</div>
+          </div>
+          <div class="details-row">
+            <div class="details-label">Domain</div>
+            <div class="details-value">dev.abdulstore.web.id</div>
+          </div>
+
+          <div class="details-row">
+            <div class="details-label">Limit Quota</div>
+            <div class="details-value">Unlimited</div>
+          </div>
+          <div class="details-row">
+            <div class="details-label">Limit IP</div>
+            <div class="details-value">Unlimited</div>
+          </div>
+
+          <div class="details-row">
+            <div class="details-label">ISP</div>
+            <div class="details-value">Akamai Connected Cloud</div>
+          </div>
+          <div class="details-row">
+            <div class="details-label">Location</div>
+            <div class="details-value">Jakarta, Indonesia</div>
+          </div>
+
+          <div class="details-row">
+            <div class="details-label">Port TLS</div>
+            <div class="details-value">443, 8443, 2053, 2083, 2087, 2096</div>
+          </div>
+          <div class="details-row">
+            <div class="details-label">Port NTLS</div>
+            <div class="details-value">80, 8080, 8880, 2052, 2082, 2086, 2095</div>
+          </div>
+
+          <div class="details-row">
+            <div class="details-label">ID / Pass</div>
+            <div class="details-value">
+              <code>460ac142-bfa5-45f9-a3ad-e96faca115ca</code>
+            </div>
+          </div>
+          <div class="details-row">
+            <div class="details-label">alterId</div>
+            <div class="details-value">0</div>
+          </div>
+
+          <div class="details-row">
+            <div class="details-label">flow</div>
+            <div class="details-value">-</div>
+          </div>
+          <div class="details-row">
+            <div class="details-label">encryption</div>
+            <div class="details-value">none</div>
+          </div>
+
+          <div class="details-row">
+            <div class="details-label">Security</div>
+            <div class="details-value">zero</div>
+          </div>
+          <div class="details-row">
+            <div class="details-label">network</div>
+            <div class="details-value">ws</div>
+          </div>
+
+          <div class="details-row full">
+            <div class="details-label">Path</div>
+            <div class="details-value">/vmess, /vless, /trojan, /shadowsocks</div>
+          </div>
+
+          <div class="details-row full">
+            <div class="details-label">Wilcard</div>
+            <div class="details-value">
+              <div class="wildcard-box">
+api.midtrans.com.dev.abdulstore.web.id
+api24-normal-alisg.tiktokv.com.dev.abdulstore.web.id
+api24-normal.tiktokv.com.dev.abdulstore.web.id
+ava.game.naver.com.dev.abdulstore.web.id
+azureinfo.microsoft.com.dev.abdulstore.web.id
+cache.netflix.com.dev.abdulstore.web.id
+cdn-cf.zoom.us.dev.abdulstore.web.id
+collection.linefriends.com.dev.abdulstore.web.id
+df.game.naver.com.dev.abdulstore.web.id
+dl.cvs.freefiremobile.com.dev.abdulstore.web.id
+dl.dir.freefiremobile.com.dev.abdulstore.web.id
+edu.ruangguru.com.dev.abdulstore.web.id
+go.appsflyer.com.dev.abdulstore.web.id
+grabacademyportal.grab.com.dev.abdulstore.web.id
+investor.fb.com.dev.abdulstore.web.id
+investors.spotify.com.dev.abdulstore.web.id
+onelink.seabank.co.id.dev.abdulstore.web.id
+partner.catchplay.com.dev.abdulstore.web.id
+quiz.int.vidio.com.dev.abdulstore.web.id
+source.zoom.us.dev.abdulstore.web.id
+support.appsflyer.com.dev.abdulstore.web.id
+support.zoom.us.dev.abdulstore.web.id
+web.poe.garena.com.dev.abdulstore.web.id
+www.udemy.com.dev.abdulstore.web.id
+zaintest.vuclip.com.dev.abdulstore.web.id
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONFIG CARDS -->
     <main class="cards">
       <!-- VMESS WS TLS -->
       <section class="config-card" style="animation-delay: 0.05s;">
@@ -589,7 +828,7 @@
         el.textContent = "Copied!";
         el.classList.add("success");
       } else {
-        el.textContent = "Gagal copy";
+        el.textContent = "Copy failed";
         el.classList.add("error");
       }
       clearTimeout(el._timeoutId);
@@ -609,7 +848,6 @@
         if (navigator.clipboard && navigator.clipboard.writeText) {
           await navigator.clipboard.writeText(text);
         } else {
-          // fallback
           const temp = document.createElement("textarea");
           temp.value = text;
           document.body.appendChild(temp);

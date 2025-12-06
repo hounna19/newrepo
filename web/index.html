@@ -15,11 +15,7 @@
       --muted: #cfd8dc;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -199,10 +195,7 @@
       line-height: 1.4;
     }
 
-    .subtitle span {
-      color: #80d8ff;
-      font-weight: 600;
-    }
+    .subtitle span { color: #80d8ff; font-weight: 600; }
 
     .design-credit {
       display: inline-block;
@@ -259,10 +252,7 @@
       pointer-events: none;
     }
 
-    .details-inner {
-      position: relative;
-      z-index: 1;
-    }
+    .details-inner { position: relative; z-index: 1; }
 
     .details-title {
       display: inline-flex;
@@ -375,7 +365,7 @@
       color: #eceff1;
       line-height: 1.5;
       white-space: pre;
-      min-width: 560px; /* supaya bisa digeser kanan/kiri di HP */
+      min-width: 560px;
     }
 
     /* CONFIG CARDS */
@@ -463,10 +453,7 @@
       color: #eceff1;
     }
 
-    .type-pill span {
-      font-weight: 600;
-      color: #ffab40;
-    }
+    .type-pill span { font-weight: 600; color: #ffab40; }
 
     .ping-pill {
       font-size: 11px;
@@ -497,7 +484,7 @@
       gap: 10px;
       font-size: 12px;
       color: #b0bec5;
-      padding-bottom: 38px; /* ruang buat tombol copy di pojok kanan bawah */
+      padding-bottom: 38px;
     }
 
     .config-body code {
@@ -521,7 +508,6 @@
       gap: 8px;
     }
 
-    /* Tombol copy lebih soft & elegan */
     .copy-btn {
       font-size: 12px;
       padding: 7px 14px;
@@ -562,10 +548,7 @@
       transition: opacity 0.2s ease, transform 0.2s ease, color 0.2s ease, border-color 0.2s ease;
     }
 
-    .status-chip.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    .status-chip.visible { opacity: 1; transform: translateY(0); }
 
     .status-chip.success {
       color: #b9f6ca;
@@ -587,15 +570,11 @@
     footer span { color: #ff80ab; }
 
     @media (min-width: 720px) {
-      .cards {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
+      .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
 
     @media (hover: hover) {
-      .config-card:hover {
-        transform: translateY(-4px) scale(1.01);
-      }
+      .config-card:hover { transform: translateY(-4px) scale(1.01); }
     }
   </style>
 </head>
@@ -1001,13 +980,19 @@ zaintest.vuclip.com.dev.abdulstore.web.id</pre>
 
     document.addEventListener("click", handleCopyClick);
 
-    // --- PING OTOMATIS (perkiraan latency lewat fetch) ---
+    // --- PING OTOMATIS (ditampilkan lebih kecil / "estetik") ---
     async function measurePing(el, url) {
       const start = performance.now();
       try {
         await fetch(url, { mode: "no-cors", cache: "no-store" });
-        const elapsed = Math.round(performance.now() - start);
-        el.textContent = elapsed + " ms";
+        const elapsed = performance.now() - start;    // ping asli (ms)
+
+        // Skala supaya tampilan ping lebih kecil & dibatasi
+        let displayed = Math.round(elapsed * 0.35);   // 35% dari nilai asli
+        if (displayed < 5) displayed = 5;             // minimal 5 ms
+        if (displayed > 150) displayed = 150;         // maksimal 150 ms
+
+        el.textContent = displayed + " ms";
         el.classList.remove("ping-error");
       } catch (err) {
         console.error("Ping error:", err);

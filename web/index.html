@@ -2,1018 +2,562 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <title>XRAY V2KEY</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Lightning Neon UI</title>
+
   <style>
-    :root {
-      --bg-gradient: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
-      --card-gradient: linear-gradient(135deg, rgba(255,255,255,0.15), rgba(0,0,0,0.4));
-      --accent: #ffeb3b;
-      --accent2: #00e5ff;
-      --accent3: #ff00c8;
-      --text-main: #fdfdfd;
-      --muted: #cfd8dc;
+    :root{
+      --bg0:#060811;
+      --bg1:#04030a;
+      --neon1:#00e5ff;
+      --neon2:#ff2bd6;
+      --neon3:#b5ff4a;
+      --text:#eaf6ff;
+      --muted:#9bb3c7;
+      --glass: rgba(255,255,255,.07);
+      --glass2: rgba(0,0,0,.35);
+      --border: rgba(255,255,255,.16);
+      --shadow: 0 20px 70px rgba(0,0,0,.55);
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    *{ box-sizing:border-box; margin:0; padding:0; }
+    html,body{ height:100%; background: radial-gradient(1200px 600px at 70% -10%, #101a45 0%, transparent 60%),
+                                   radial-gradient(900px 550px at 20% 110%, #2a0f33 0%, transparent 60%),
+                                   linear-gradient(180deg, var(--bg0), var(--bg1));
+              color:var(--text);
+              font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+              overflow:hidden; }
 
-    body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      min-height: 100vh;
-      color: var(--text-main);
-      background: #050816;
-      overflow-x: hidden;
+    /* --- Animated background layers --- */
+    .stage{
+      position:relative;
+      width:100%;
+      height:100%;
+      display:grid;
+      place-items:center;
+      isolation:isolate;
     }
 
-    /* Background gradient */
-    .bg-animated {
-      position: fixed;
-      inset: 0;
-      background: radial-gradient(circle at 0% 0%, #ff00c8 0, transparent 40%),
-                  radial-gradient(circle at 100% 0%, #00e5ff 0, transparent 45%),
-                  radial-gradient(circle at 0% 100%, #ffeb3b 0, transparent 45%),
-                  radial-gradient(circle at 100% 100%, #7c4dff 0, transparent 45%);
-      opacity: 0.25;
-      mix-blend-mode: screen;
-      animation: floatBg 20s infinite alternate ease-in-out;
-      z-index: -4;
-    }
-
-    @keyframes floatBg {
-      0% { transform: translate3d(0, 0, 0) scale(1); }
-      100% { transform: translate3d(0, -30px, 0) scale(1.05); }
-    }
-
-    .bg-gradient-overlay {
-      position: fixed;
-      inset: 0;
-      background: radial-gradient(ellipse at top, rgba(255,255,255,0.06), transparent 60%),
-                  linear-gradient(180deg, rgba(0,0,0,0.8), rgba(0,0,0,1));
-      z-index: -3;
-    }
-
-    /* Star layer – kelip kecil */
-    .star-layer {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      background-image:
-        radial-gradient(1.8px 1.8px at 10% 20%, rgba(255,255,255,0.7) 50%, transparent 51%),
-        radial-gradient(1.6px 1.6px at 80% 10%, rgba(255,255,255,0.6) 50%, transparent 51%),
-        radial-gradient(1.6px 1.6px at 30% 80%, rgba(255,255,255,0.65) 50%, transparent 51%),
-        radial-gradient(1.4px 1.4px at 65% 60%, rgba(255,255,255,0.55) 50%, transparent 51%);
-      background-repeat: no-repeat;
-      animation: twinkle 3.5s ease-in-out infinite alternate;
-      opacity: 0.7;
-      z-index: -2;
-    }
-
-    @keyframes twinkle {
-      0% { opacity: 0.2; transform: translateY(0); }
-      50% { opacity: 0.9; transform: translateY(1px); }
-      100% { opacity: 0.4; transform: translateY(-1px); }
-    }
-
-    /* Snow layer – flakes lebih banyak & sedikit lebih besar */
-    .snow-layer,
-    .snow-layer::before,
-    .snow-layer::after {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      background-repeat: repeat;
-      background-size: 150px 150px;
-      z-index: -1;
-    }
-
-    .snow-layer {
-      background-image:
-        radial-gradient(4px 4px at 20px 20px, rgba(255,255,255,0.95) 50%, transparent 51%),
-        radial-gradient(3.5px 3.5px at 80px 60px, rgba(255,255,255,0.9) 50%, transparent 51%),
-        radial-gradient(4px 4px at 140px 120px, rgba(255,255,255,0.85) 50%, transparent 51%),
-        radial-gradient(3.5px 3.5px at 40px 140px, rgba(255,255,255,0.8) 50%, transparent 51%),
-        radial-gradient(3.5px 3.5px at 110px 30px, rgba(255,255,255,0.9) 50%, transparent 51%);
-      animation: snow 18s linear infinite;
-      opacity: 0.9;
-    }
-
-    .snow-layer::before {
-      content: "";
-      background-image:
-        radial-gradient(3.8px 3.8px at 40px 40px, rgba(255,255,255,0.85) 50%, transparent 51%),
-        radial-gradient(3.5px 3.5px at 120px 100px, rgba(255,255,255,0.78) 50%, transparent 51%),
-        radial-gradient(3.8px 3.8px at 160px 20px, rgba(255,255,255,0.75) 50%, transparent 51%),
-        radial-gradient(3.2px 3.2px at 10px 120px, rgba(255,255,255,0.8) 50%, transparent 51%);
-      animation: snow 26s linear infinite;
-      opacity: 0.78;
-    }
-
-    .snow-layer::after {
-      content: "";
-      background-image:
-        radial-gradient(3.2px 3.2px at 60px 10px, rgba(255,255,255,0.85) 50%, transparent 51%),
-        radial-gradient(3px 3px at 180px 90px, rgba(255,255,255,0.75) 50%, transparent 51%),
-        radial-gradient(3px 3px at 100px 160px, rgba(255,255,255,0.75) 50%, transparent 51%),
-        radial-gradient(3px 3px at 150px 60px, rgba(255,255,255,0.8) 50%, transparent 51%);
-      animation: snow 34s linear infinite;
-      opacity: 0.8;
-    }
-
-    @keyframes snow {
-      0% { transform: translate3d(0, -40px, 0); }
-      100% { transform: translate3d(-40px, 100vh, 0); }
-    }
-
-    .wrapper {
-      max-width: 1040px;
-      margin: 0 auto;
-      padding: 32px 16px 48px;
-    }
-
-    header {
-      text-align: center;
-      margin-bottom: 24px;
-      animation: fadeDown 0.9s ease-out both;
-    }
-
-    @keyframes fadeDown {
-      from { opacity: 0; transform: translateY(-20px) scale(0.98); }
-      to { opacity: 1; transform: translateY(0) scale(1); }
-    }
-
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 6px 14px;
-      border-radius: 999px;
-      background: rgba(0,0,0,0.6);
-      border: 1px solid rgba(255,255,255,0.15);
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--muted);
-      margin-bottom: 12px;
-      backdrop-filter: blur(10px);
-    }
-
-    .pulse-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 999px;
-      background: #00e676;
-      box-shadow: 0 0 0 0 rgba(0,230,118,0.8);
-      animation: pulse 1.5s infinite;
-    }
-
-    @keyframes pulse {
-      0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(0,230,118,0.8); }
-      70% { transform: scale(1.4); box-shadow: 0 0 0 10px rgba(0,230,118,0); }
-      100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(0,230,118,0); }
-    }
-
-    h1 {
-      font-size: clamp(2.4rem, 4vw, 3rem);
-      margin-bottom: 6px;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      background: linear-gradient(120deg, #fff, #ffe082, #ff80ab, #80d8ff, #fff);
-      background-clip: text;
-      -webkit-background-clip: text;
-      color: transparent;
-      text-shadow: 0 0 20px rgba(0,0,0,0.4);
-      background-size: 250% 250%;
-      animation: titleGradientMove 10s ease-in-out infinite;
-    }
-
-    @keyframes titleGradientMove {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
-    .subtitle {
-      font-size: 14px;
-      color: var(--muted);
-      line-height: 1.4;
-    }
-
-    .design-credit {
-      display: inline-block;
-      margin-top: 2px;
-      font-size: 12px;
-      color: #ff80ab;
-      font-weight: 600;
-    }
-
-    .glow-line {
-      width: 110px;
-      height: 3px;
-      margin: 18px auto 0;
-      border-radius: 999px;
-      background: linear-gradient(90deg, transparent, #ffeb3b, #ff00c8, transparent);
-      box-shadow: 0 0 16px rgba(255,255,255,0.6);
-    }
-
-    .info-text {
-      margin-top: 18px;
-      font-size: 13px;
-      color: #b0bec5;
-    }
-
-    .info-text strong { color: #ffe082; }
-
-    /* DETAILS CARD */
-    .details-card {
-      margin-top: 20px;
-      padding: 16px 16px 14px;
-      border-radius: 18px;
+    /* Moving neon grid */
+    .grid{
+      position:absolute; inset:-40%;
       background:
-        radial-gradient(circle at top left, rgba(71,181,255,0.35), transparent 60%),
-        radial-gradient(circle at bottom right, rgba(0,150,136,0.4), transparent 65%),
-        linear-gradient(135deg, #061426, #04121c);
-      border: 1px solid rgba(176,190,197,0.6);
-      box-shadow:
-        0 16px 44px rgba(0,0,0,0.9),
-        0 0 0 1px rgba(0,0,0,0.6);
-      backdrop-filter: blur(20px);
-      position: relative;
-      overflow: hidden;
+        linear-gradient(rgba(0,229,255,.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,43,214,.05) 1px, transparent 1px);
+      background-size: 70px 70px, 70px 70px;
+      transform: rotateX(70deg) rotateZ(25deg);
+      filter: blur(.2px);
+      animation: gridMove 9s linear infinite;
+      opacity:.55;
+      z-index:-5;
+    }
+    @keyframes gridMove{
+      0%{ background-position: 0 0, 0 0; }
+      100%{ background-position: 0 420px, 420px 0; }
     }
 
-    .details-card::before {
-      content: "";
-      position: absolute;
-      inset: -1px;
-      border-radius: inherit;
-      background: conic-gradient(from 200deg, #00e676, #00e5ff, #b2ff59, #00e676);
-      opacity: 0.18;
-      mix-blend-mode: screen;
-      filter: blur(20px);
-      pointer-events: none;
-    }
-
-    .details-inner { position: relative; z-index: 1; }
-
-    .details-title {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 14px;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: #eceff1;
-      margin-bottom: 12px;
-    }
-
-    .details-dot {
-      width: 18px;
-      height: 18px;
-      border-radius: 999px;
-      background: radial-gradient(circle at 30% 30%, #ffffff, #00e676, #00bfa5);
-      box-shadow: 0 0 18px rgba(0,255,160,0.9);
-    }
-
-    .details-grid {
-      display: grid;
-      gap: 6px 16px;
-      font-size: 13px;
-      color: #e0f2f1;
-    }
-
-    @media (min-width: 720px) {
-      .details-grid {
-        grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.3fr);
-      }
-      .details-grid .full { grid-column: 1 / -1; }
-    }
-
-    .details-row {
-      display: flex;
-      gap: 8px;
-      align-items: flex-start;
-    }
-
-    .details-label {
-      min-width: 100px;
-      max-width: 130px;
-      font-weight: 700;
-      color: #ffd54f;
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-    }
-
-    .details-value {
-      flex: 1;
-      font-size: 13px;
-      color: #eceff1;
-    }
-
-    .details-value-strong {
-      font-family: "JetBrains Mono", "Fira Code", monospace;
-      font-weight: 600;
-    }
-
-    /* WILDCARD CARD */
-    .wildcard-card {
-      margin-top: 14px;
-      padding: 16px 16px 14px;
-      border-radius: 18px;
+    /* Aurora blobs */
+    .aurora{
+      position:absolute; inset:-30%;
       background:
-        radial-gradient(circle at top right, rgba(129,212,250,0.25), transparent 60%),
-        linear-gradient(135deg, #050d1b, #020713);
-      border: 1px solid rgba(144,164,174,0.8);
-      box-shadow:
-        0 16px 44px rgba(0,0,0,0.9),
-        0 0 0 1px rgba(0,0,0,0.8);
+        radial-gradient(closest-side at 30% 30%, rgba(0,229,255,.25), transparent 60%),
+        radial-gradient(closest-side at 70% 50%, rgba(255,43,214,.22), transparent 60%),
+        radial-gradient(closest-side at 45% 80%, rgba(181,255,74,.18), transparent 60%);
+      filter: blur(40px) saturate(140%);
+      animation: auroraDrift 12s ease-in-out infinite alternate;
+      z-index:-6;
+      opacity:.9;
+    }
+    @keyframes auroraDrift{
+      0%{ transform: translate(-2%, -1%) scale(1.02) rotate(-3deg); }
+      100%{ transform: translate(2%, 1%) scale(1.06) rotate(3deg); }
+    }
+
+    /* Vignette + noise */
+    .vignette{
+      position:absolute; inset:0;
+      background:
+        radial-gradient(900px 500px at 50% 40%, transparent 0%, rgba(0,0,0,.35) 60%, rgba(0,0,0,.72) 100%),
+        repeating-linear-gradient(0deg, rgba(255,255,255,.02) 0, rgba(255,255,255,.02) 1px, transparent 2px, transparent 4px);
+      mix-blend-mode: overlay;
+      pointer-events:none;
+      z-index:-1;
+      opacity:.9;
+    }
+
+    /* --- Lightning bolts --- */
+    .bolt{
+      position:absolute;
+      inset:0;
+      pointer-events:none;
+      z-index:-2;
+      opacity:0;
+      filter:
+        drop-shadow(0 0 10px rgba(0,229,255,.75))
+        drop-shadow(0 0 22px rgba(255,43,214,.45))
+        drop-shadow(0 0 40px rgba(181,255,74,.22));
+      animation: boltFlash 6.5s infinite;
+    }
+    .bolt:nth-child(2){ animation-delay: 1.2s; transform: scaleX(-1); }
+    .bolt:nth-child(3){ animation-delay: 2.4s; transform: rotate(10deg) scale(1.05); }
+    .bolt:nth-child(4){ animation-delay: 3.9s; transform: rotate(-8deg) scale(1.02); }
+
+    @keyframes boltFlash{
+      0%, 84%, 100% { opacity:0; }
+      85% { opacity:.0; }
+      86% { opacity:1; }
+      87% { opacity:.25; }
+      88% { opacity:.95; }
+      89% { opacity:.15; }
+      90% { opacity:.7; }
+      92% { opacity:0; }
+    }
+
+    /* --- Main card --- */
+    .card{
+      width:min(920px, 92vw);
+      padding:28px;
+      border-radius:22px;
+      background: linear-gradient(135deg, rgba(255,255,255,.10), rgba(0,0,0,.36));
+      border: 1px solid rgba(255,255,255,.16);
+      box-shadow: var(--shadow);
       backdrop-filter: blur(18px);
-      position: relative;
-      overflow: hidden;
+      position:relative;
+      overflow:hidden;
     }
 
-    .wildcard-card-title {
-      font-size: 13px;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: #eceff1;
-      margin-bottom: 10px;
-    }
-
-    .wildcard-scroll {
-      padding: 10px 8px;
-      border-radius: 12px;
-      background: rgba(2, 12, 30, 0.96);
-      border: 1px dashed rgba(144,164,174,0.9);
-      overflow-x: auto;
-      overflow-y: auto;
-      -webkit-overflow-scrolling: touch;
-    }
-
-    .wildcard-scroll::-webkit-scrollbar {
-      height: 6px;
-      width: 6px;
-    }
-
-    .wildcard-scroll::-webkit-scrollbar-thumb {
-      background: rgba(255,255,255,0.35);
-      border-radius: 999px;
-    }
-
-    .wildcard-pre {
-      font-family: "JetBrains Mono", "Fira Code", monospace;
-      font-size: 11px;
-      color: #eceff1;
-      line-height: 1.5;
-      white-space: pre;
-      min-width: 560px;
-    }
-
-    /* CONFIG CARDS */
-    .cards {
-      display: grid;
-      gap: 16px;
-      margin-top: 24px;
-    }
-
-    .config-card {
-      position: relative;
-      padding: 16px 16px 14px;
-      border-radius: 16px;
+    /* Shiny edge + animated highlight */
+    .card::before{
+      content:"";
+      position:absolute; inset:-2px;
       background:
-        radial-gradient(circle at top left, rgba(255,255,255,0.12), transparent 50%),
-        radial-gradient(circle at bottom right, rgba(0,0,0,0.5), transparent 50%),
-        linear-gradient(145deg, #050d1b, #020713);
-      border: 1px solid rgba(120,144,156,0.8);
+        linear-gradient(120deg,
+          transparent 0%,
+          rgba(0,229,255,.28) 18%,
+          rgba(255,43,214,.22) 38%,
+          rgba(181,255,74,.16) 60%,
+          transparent 80%);
+      opacity:.55;
+      transform: translateX(-40%);
+      animation: shine 4.6s ease-in-out infinite;
+      filter: blur(6px);
+      pointer-events:none;
+    }
+    @keyframes shine{
+      0%{ transform: translateX(-50%) rotate(0deg); opacity:.35; }
+      45%{ opacity:.65; }
+      100%{ transform: translateX(50%) rotate(0deg); opacity:.35; }
+    }
+
+    /* Electric border trace */
+    .trace{
+      position:absolute; inset:0;
+      border-radius:22px;
+      padding:1px;
+      background: conic-gradient(from 180deg,
+        rgba(0,229,255,.0),
+        rgba(0,229,255,.8),
+        rgba(255,43,214,.8),
+        rgba(181,255,74,.65),
+        rgba(0,229,255,.0));
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor;
+              mask-composite: exclude;
+      opacity:.65;
+      animation: spin 5.5s linear infinite;
+      pointer-events:none;
+    }
+    @keyframes spin { to { transform: rotate(1turn); } }
+
+    .top{
+      display:flex;
+      gap:18px;
+      align-items:center;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      position:relative;
+      z-index:1;
+    }
+
+    .brand{
+      display:flex;
+      gap:14px;
+      align-items:center;
+      min-width: 260px;
+    }
+
+    .logo{
+      width:52px; height:52px;
+      border-radius:16px;
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.20), rgba(255,255,255,.06) 45%, rgba(0,0,0,.45) 100%),
+                  conic-gradient(from 120deg, rgba(0,229,255,.8), rgba(255,43,214,.75), rgba(181,255,74,.65), rgba(0,229,255,.8));
       box-shadow:
-        0 14px 40px rgba(0,0,0,0.9),
-        0 0 0 1px rgba(0,0,0,0.7);
-      overflow: hidden;
-      backdrop-filter: blur(16px);
-      transform-origin: center;
-      animation: fadeUp 0.8s ease-out both;
+        0 0 0 1px rgba(255,255,255,.12),
+        0 0 18px rgba(0,229,255,.35),
+        0 0 26px rgba(255,43,214,.25);
+      position:relative;
+      overflow:hidden;
+    }
+    .logo::after{
+      content:"";
+      position:absolute; inset:-40%;
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.42), transparent 45%);
+      transform: rotate(25deg);
+      animation: logoGlow 2.2s ease-in-out infinite alternate;
+      filter: blur(2px);
+      opacity:.8;
+    }
+    @keyframes logoGlow{
+      from{ transform: translate(-4%, -2%) rotate(25deg); opacity:.55; }
+      to{ transform: translate(6%, 4%) rotate(25deg); opacity:.95; }
     }
 
-    .config-card::before {
-      content: "";
-      position: absolute;
-      inset: -1px;
-      border-radius: inherit;
-      background: linear-gradient(135deg, rgba(255,255,255,0.22), transparent 40%, rgba(0,0,0,0.6));
-      opacity: 0.4;
-      pointer-events: none;
-      z-index: -1;
+    h1{
+      font-size: clamp(20px, 3vw, 34px);
+      line-height: 1.1;
+      letter-spacing:.4px;
+      text-shadow:
+        0 0 10px rgba(0,229,255,.28),
+        0 0 18px rgba(255,43,214,.18);
+    }
+    .subtitle{
+      margin-top:6px;
+      color:var(--muted);
+      font-size: 13.5px;
     }
 
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(22px) scale(0.98); }
-      to { opacity: 1; transform: translateY(0) scale(1); }
+    .actions{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
     }
 
-    .config-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      margin-bottom: 10px;
+    .btn{
+      border:1px solid rgba(255,255,255,.16);
+      background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(0,0,0,.35));
+      color:var(--text);
+      padding: 11px 14px;
+      border-radius: 14px;
+      cursor:pointer;
+      font-weight:650;
+      letter-spacing:.2px;
+      box-shadow:
+        0 0 0 1px rgba(0,0,0,.25) inset,
+        0 14px 30px rgba(0,0,0,.35);
+      transition: transform .15s ease, filter .15s ease, box-shadow .15s ease;
+      position:relative;
+      overflow:hidden;
+    }
+    .btn::before{
+      content:"";
+      position:absolute; inset:-60% -40%;
+      background: radial-gradient(circle at 30% 30%, rgba(0,229,255,.28), transparent 55%),
+                  radial-gradient(circle at 60% 60%, rgba(255,43,214,.22), transparent 55%);
+      filter: blur(10px);
+      opacity:.8;
+      transform: translateX(-18%);
+      transition: transform .3s ease;
+      pointer-events:none;
+    }
+    .btn:hover{
+      transform: translateY(-1px);
+      filter: brightness(1.05);
+      box-shadow:
+        0 0 16px rgba(0,229,255,.16),
+        0 0 22px rgba(255,43,214,.12),
+        0 18px 40px rgba(0,0,0,.45);
+    }
+    .btn:hover::before{ transform: translateX(12%); }
+
+    .btn.primary{
+      border:1px solid rgba(0,229,255,.35);
+      box-shadow:
+        0 0 18px rgba(0,229,255,.22),
+        0 0 28px rgba(255,43,214,.12),
+        0 18px 50px rgba(0,0,0,.45);
     }
 
-    .config-title-wrapper {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
+    /* Content blocks */
+    .content{
+      margin-top:18px;
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:14px;
+      position:relative;
+      z-index:1;
+    }
+    @media (max-width: 860px){
+      .content{ grid-template-columns: 1fr; }
     }
 
-    .config-title {
-      font-size: 15px;
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      display: flex;
-      align-items: center;
-      gap: 8px;
+    .panel{
+      border-radius:18px;
+      padding:16px;
+      border:1px solid rgba(255,255,255,.12);
+      background: linear-gradient(135deg, rgba(255,255,255,.08), rgba(0,0,0,.32));
+      box-shadow: 0 12px 30px rgba(0,0,0,.25);
+      position:relative;
+      overflow:hidden;
+    }
+    .panel::after{
+      content:"";
+      position:absolute; inset:-1px;
+      background: radial-gradient(700px 300px at 20% 20%, rgba(0,229,255,.18), transparent 55%),
+                  radial-gradient(700px 300px at 80% 70%, rgba(255,43,214,.14), transparent 55%);
+      opacity:.8;
+      pointer-events:none;
+      filter: blur(8px);
     }
 
-    .config-tag {
-      font-size: 10px;
-      padding: 2px 8px;
-      border-radius: 999px;
-      background: rgba(0,0,0,0.55);
-      border: 1px solid rgba(255,255,255,0.18);
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: #b3e5fc;
+    .panel h2{
+      font-size:14px;
+      letter-spacing:.25em;
+      text-transform:uppercase;
+      color: rgba(234,246,255,.88);
+      margin-bottom:10px;
+      position:relative;
+      z-index:1;
+    }
+    .row{
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      padding:10px 0;
+      border-bottom:1px dashed rgba(255,255,255,.12);
+      position:relative;
+      z-index:1;
+      font-size:14px;
+    }
+    .row:last-child{ border-bottom:0; }
+    .k{ color: rgba(234,246,255,.75); }
+    .v{
+      color: rgba(234,246,255,.95);
+      font-weight:650;
+      text-shadow: 0 0 10px rgba(0,229,255,.12);
+      text-align:right;
+      word-break: break-word;
     }
 
-    .type-pill {
-      font-size: 11px;
-      padding: 4px 10px;
-      border-radius: 999px;
-      background: linear-gradient(120deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
-      border: 1px solid rgba(255,255,255,0.13);
-      color: #eceff1;
+    /* Energy ring */
+    .ring{
+      position:absolute;
+      width:520px; height:520px;
+      border-radius:50%;
+      left:50%; top:50%;
+      transform: translate(-50%,-50%);
+      background:
+        radial-gradient(circle at 50% 50%, transparent 55%, rgba(0,229,255,.35) 56%, transparent 60%),
+        radial-gradient(circle at 50% 50%, transparent 62%, rgba(255,43,214,.25) 63%, transparent 68%),
+        radial-gradient(circle at 50% 50%, transparent 70%, rgba(181,255,74,.14) 71%, transparent 78%);
+      filter: blur(.2px);
+      opacity:.55;
+      animation: ringPulse 3.4s ease-in-out infinite;
+      pointer-events:none;
+      z-index:-3;
+    }
+    @keyframes ringPulse{
+      0%{ transform: translate(-50%,-50%) scale(.98) rotate(0deg); opacity:.35; }
+      55%{ opacity:.75; }
+      100%{ transform: translate(-50%,-50%) scale(1.04) rotate(25deg); opacity:.35; }
     }
 
-    .type-pill span { font-weight: 600; color: #ffab40; }
-
-    .ping-pill {
-      font-size: 11px;
-      padding: 4px 10px;
-      border-radius: 999px;
-      background: rgba(0,0,0,0.65);
-      border: 1px solid rgba(144,202,249,0.8);
-      color: #e1f5fe;
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
+    /* Floating sparks */
+    .sparks{
+      position:absolute; inset:0;
+      pointer-events:none;
+      z-index:-4;
+      opacity:.75;
+    }
+    .spark{
+      position:absolute;
+      width:3px; height:3px;
+      border-radius:50%;
+      background: rgba(255,255,255,.9);
+      filter: drop-shadow(0 0 10px rgba(0,229,255,.7));
+      animation: floatUp 5.8s linear infinite;
+    }
+    @keyframes floatUp{
+      from{ transform: translateY(30px); opacity:0; }
+      10%{ opacity:.9; }
+      to{ transform: translateY(-520px); opacity:0; }
     }
 
-    .ping-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: #00e676;
-      box-shadow: 0 0 8px rgba(0,230,118,0.9);
+    /* Mini hint footer */
+    .hint{
+      margin-top:12px;
+      color: rgba(234,246,255,.62);
+      font-size: 12.5px;
+      text-align:center;
+      text-shadow: 0 0 14px rgba(0,229,255,.10);
+      position:relative;
+      z-index:1;
     }
 
-    .ping-value.ping-error { color: #ff8a80; }
-
-    .config-body {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      font-size: 12px;
-      color: #b0bec5;
-      padding-bottom: 38px;
-    }
-
-    .config-body code {
-      font-family: "JetBrains Mono", "Fira Code", monospace;
-      font-size: 11px;
-      background: rgba(0,0,0,0.6);
-      padding: 8px 10px;
-      border-radius: 10px;
-      border: 1px dashed rgba(176,190,197,0.6);
-      word-break: break-all;
-      white-space: pre-wrap;
-      display: block;
-    }
-
-    .copy-row {
-      position: absolute;
-      right: 10px;
-      bottom: 6px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .copy-btn {
-      font-size: 12px;
-      padding: 7px 14px;
-      border-radius: 999px;
-      border: none;
-      cursor: pointer;
-      font-weight: 600;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      background-image: linear-gradient(120deg, #90caf9, #ce93d8, #ffcc80);
-      background-size: 200% 200%;
-      color: #051019;
-      box-shadow: 0 6px 14px rgba(0,0,0,0.7);
-      transition: transform 0.18s ease-out, box-shadow 0.18s ease-out, background-position 0.5s ease;
-    }
-
-    .copy-btn:hover {
-      transform: translateY(-2px) scale(1.02);
-      background-position: 100% 0%;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.85);
-    }
-
-    .copy-btn:active {
-      transform: translateY(0) scale(0.97);
-      box-shadow: 0 4px 8px rgba(0,0,0,0.9);
-    }
-
-    .status-chip {
-      font-size: 11px;
-      padding: 4px 10px;
-      border-radius: 999px;
-      background: rgba(0,0,0,0.7);
-      border: 1px solid rgba(255,255,255,0.15);
-      color: #b0bec5;
-      opacity: 0;
-      transform: translateY(6px);
-      pointer-events: none;
-      transition: opacity 0.2s ease, transform 0.2s ease, color 0.2s ease, border-color 0.2s ease;
-    }
-
-    .status-chip.visible { opacity: 1; transform: translateY(0); }
-    .status-chip.success { color: #b9f6ca; border-color: rgba(185,246,202,0.7); }
-    .status-chip.error { color: #ff8a80; border-color: rgba(255,138,128,0.7); }
-
-    footer {
-      margin-top: 32px;
-      text-align: center;
-      font-size: 11px;
-      color: #90a4ae;
-    }
-
-    footer span { color: #ff80ab; }
-
-    @media (min-width: 720px) {
-      .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    }
-
-    @media (hover: hover) {
-      .config-card:hover { transform: translateY(-4px) scale(1.01); }
+    /* Respect reduced motion */
+    @media (prefers-reduced-motion: reduce){
+      .grid,.aurora,.bolt,.trace,.ring,.spark,.card::before,.logo::after{ animation:none !important; }
     }
   </style>
 </head>
+
 <body>
-  <div class="bg-animated"></div>
-  <div class="bg-gradient-overlay"></div>
-  <div class="star-layer"></div>
-  <div class="snow-layer"></div>
+  <div class="stage">
+    <div class="aurora"></div>
+    <div class="grid"></div>
 
-  <div class="wrapper">
-    <header>
-      <div class="badge">
-        <div class="pulse-dot"></div>
-        <span>ALL XRAY PANEL</span>
-      </div>
-      <h1>XRAY V2KEY</h1>
-      <p class="subtitle">
-        · Fast · Secure · High Quality<br />
-        <span class="design-credit">Design UI: Technic Developer</span>
-      </p>
-      <div class="glow-line"></div>
-      <p class="info-text">
-        Click the <strong>COPY</strong> button on each row to copy the account to your clipboard.
-      </p>
-    </header>
+    <!-- Lightning SVG overlays -->
+    <svg class="bolt" viewBox="0 0 1000 600" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M450 0 L520 120 L470 150 L560 260 L500 290 L610 420 L520 460 L640 600"
+            fill="none" stroke="rgba(245,255,255,.95)" stroke-width="6" stroke-linecap="round" />
+      <path d="M455 0 L520 120 L470 150 L560 260 L500 290 L610 420 L520 460 L640 600"
+            fill="none" stroke="rgba(0,229,255,.55)" stroke-width="12" stroke-linecap="round" opacity=".55"/>
+    </svg>
+    <svg class="bolt" viewBox="0 0 1000 600" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M560 0 L520 120 L590 160 L520 260 L590 320 L500 420 L560 480 L470 600"
+            fill="none" stroke="rgba(245,255,255,.95)" stroke-width="6" stroke-linecap="round" />
+      <path d="M560 0 L520 120 L590 160 L520 260 L590 320 L500 420 L560 480 L470 600"
+            fill="none" stroke="rgba(255,43,214,.45)" stroke-width="12" stroke-linecap="round" opacity=".45"/>
+    </svg>
+    <svg class="bolt" viewBox="0 0 1000 600" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M300 0 L360 110 L320 150 L380 240 L340 290 L420 420 L380 470 L460 600"
+            fill="none" stroke="rgba(245,255,255,.92)" stroke-width="5" stroke-linecap="round" />
+      <path d="M300 0 L360 110 L320 150 L380 240 L340 290 L420 420 L380 470 L460 600"
+            fill="none" stroke="rgba(181,255,74,.22)" stroke-width="11" stroke-linecap="round" opacity=".55"/>
+    </svg>
+    <svg class="bolt" viewBox="0 0 1000 600" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M720 0 L680 120 L740 160 L690 260 L730 320 L650 420 L710 490 L630 600"
+            fill="none" stroke="rgba(245,255,255,.90)" stroke-width="5" stroke-linecap="round" />
+      <path d="M720 0 L680 120 L740 160 L690 260 L730 320 L650 420 L710 490 L630 600"
+            fill="none" stroke="rgba(0,229,255,.35)" stroke-width="11" stroke-linecap="round" opacity=".50"/>
+    </svg>
 
-    <!-- DETAILS CARD -->
-    <section class="details-card">
-      <div class="details-inner">
-        <div class="details-title">
-          <div class="details-dot"></div>
-          SERVER INFORMATION
-        </div>
-        <div class="details-grid">
-          <div class="details-row">
-            <div class="details-label">Remarks</div>
-            <div class="details-value">XRAY V2KEY</div>
-          </div>
-          <div class="details-row">
-            <div class="details-label">Domain</div>
-            <div class="details-value">xray.v2key.web.id</div>
-          </div>
+    <!-- Sparks -->
+    <div class="sparks" id="sparks"></div>
 
-          <div class="details-row">
-            <div class="details-label">Limit Quota</div>
-            <div class="details-value">Unlimited</div>
-          </div>
-          <div class="details-row">
-            <div class="details-label">Limit IP</div>
-            <div class="details-value">Unlimited</div>
-          </div>
+    <!-- Main UI -->
+    <div class="ring"></div>
 
-          <div class="details-row">
-            <div class="details-label">ISP</div>
-            <div class="details-value">Akamai Connected Cloud</div>
-          </div>
-          <div class="details-row">
-            <div class="details-label">Location</div>
-            <div class="details-value">Jakarta, Indonesia</div>
-          </div>
+    <section class="card">
+      <div class="trace"></div>
 
-          <div class="details-row">
-            <div class="details-label">Port TLS</div>
-            <div class="details-value">443, 8443, 2053, 2083, 2087, 2096</div>
-          </div>
-          <div class="details-row">
-            <div class="details-label">Port NTLS</div>
-            <div class="details-value">80, 8080, 8880, 2052, 2082, 2086, 2095</div>
-          </div>
-
-          <div class="details-row">
-            <div class="details-label">ID / Pass</div>
-            <div class="details-value details-value-strong">
-              acd21f38-990a-4ea0-b522-dd5b780d2c94
-            </div>
-          </div>
-          <div class="details-row">
-            <div class="details-label">alterId</div>
-            <div class="details-value">0</div>
-          </div>
-
-          <div class="details-row">
-            <div class="details-label">flow</div>
-            <div class="details-value">-</div>
-          </div>
-          <div class="details-row">
-            <div class="details-label">encryption</div>
-            <div class="details-value">none</div>
-          </div>
-
-          <div class="details-row">
-            <div class="details-label">Security</div>
-            <div class="details-value">zero</div>
-          </div>
-          <div class="details-row">
-            <div class="details-label">network</div>
-            <div class="details-value">ws</div>
-          </div>
-
-          <div class="details-row full">
-            <div class="details-label">Path</div>
-            <div class="details-value">/vmess, /vless, /trojan, /shadowsocks</div>
+      <div class="top">
+        <div class="brand">
+          <div class="logo" aria-hidden="true"></div>
+          <div>
+            <h1>Lightning Neon Panel</h1>
+            <div class="subtitle">Glow • Shadow Lightning • Aurora • Grid • Sparks</div>
           </div>
         </div>
+
+        <div class="actions">
+          <button class="btn" onclick="flashNow()">⚡ Flash</button>
+          <button class="btn primary" onclick="togglePower()">🔋 Toggle Power</button>
+        </div>
       </div>
+
+      <div class="content">
+        <div class="panel">
+          <h2>Status</h2>
+          <div class="row"><div class="k">Mode</div><div class="v" id="mode">NEON ACTIVE</div></div>
+          <div class="row"><div class="k">Field</div><div class="v" id="field">STABLE</div></div>
+          <div class="row"><div class="k">Output</div><div class="v" id="out">9.4 kV</div></div>
+          <div class="row"><div class="k">Shield</div><div class="v" id="shield">ON</div></div>
+        </div>
+
+        <div class="panel">
+          <h2>Controls</h2>
+          <div class="row"><div class="k">Aurora</div><div class="v">Drifting</div></div>
+          <div class="row"><div class="k">Grid</div><div class="v">Flowing</div></div>
+          <div class="row"><div class="k">Lightning</div><div class="v">Random Flash</div></div>
+          <div class="row"><div class="k">Sparks</div><div class="v">Rising</div></div>
+        </div>
+      </div>
+
+      <div class="hint">Klik ⚡ Flash buat “petir” langsung muncul. Toggle Power buat mati/nyala efek neon.</div>
     </section>
 
-    <!-- WILDCARD CARD -->
-    <section class="wildcard-card">
-      <div class="wildcard-card-title">WILDCARD DOMAINS</div>
-      <div class="wildcard-scroll">
-<pre class="wildcard-pre">api.midtrans.com.xray.v2key.web.id
-api24-normal-alisg.tiktokv.com.xray.v2key.web.id
-api24-normal.tiktokv.com.xray.v2key.web.id
-ava.game.naver.com.xray.v2key.web.id
-azureinfo.microsoft.com.xray.v2key.web.id
-cache.netflix.com.xray.v2key.web.id
-cdn-cf.zoom.us.xray.v2key.web.id
-cf-vod.nimo.tv.xray.v2key.web.id
-collection.linefriends.com.xray.v2key.web.id
-df.game.naver.com.xray.v2key.web.id
-dl.cvs.freefiremobile.com.xray.v2key.web.id
-dl.dir.freefiremobile.com.xray.v2key.web.id
-edu.ruangguru.com.xray.v2key.web.id
-go.appsflyer.com.xray.v2key.web.id
-grabacademyportal.grab.com.xray.v2key.web.id
-investor.fb.com.xray.v2key.web.id
-investors.spotify.com.xray.v2key.web.id
-ir.huya.com.xray.v2key.web.id
-onelink.seabank.co.id.xray.v2key.web.id
-partner.catchplay.com.xray.v2key.web.id
-quiz.int.vidio.com.xray.v2key.web.id
-source.zoom.us.xray.v2key.web.id
-support.appsflyer.com.xray.v2key.web.id
-support.zoom.us.xray.v2key.web.id
-web.poe.garena.com.xray.v2key.web.id
-www.speedtest.net.xray.v2key.web.id
-www.udemy.com.xray.v2key.web.id
-zaintest.vuclip.com.xray.v2key.web.id</pre>
-      </div>
-    </section>
-
-    <!-- CONFIG CARDS -->
-    <main class="cards">
-      <!-- VMESS TLS -->
-      <section class="config-card" style="animation-delay: 0.05s;">
-        <div class="config-header">
-          <div class="config-title-wrapper">
-            <div class="config-title">
-              VMESS TLS
-              <span class="config-tag">TLS</span>
-            </div>
-            <div class="type-pill"><span>VMESS</span> · Websocket · 443</div>
-          </div>
-          <div class="ping-pill">
-            <span class="ping-dot"></span>
-            <span>Ping:</span>
-            <span class="ping-value" data-ping-url="https://xray.v2key.web.id/">…</span>
-          </div>
-        </div>
-        <div class="config-body">
-          <code>vmess://eyJhZGQiOiJ4cmF5LnYya2V5LndlYi5pZCIsImFpZCI6IjAiLCJhbHBuIjoiIiwiZnAiOiIiLCJob3N0IjoieHJheS52MmtleS53ZWIuaWQiLCJpZCI6ImFjZDIxZjM4LTk5MGEtNGVhMC1iNTIyLWRkNWI3ODBkMmM5NCIsIm5ldCI6IndzIiwicGF0aCI6Ii92bWVzcyIsInBvcnQiOiI0NDMiLCJwcyI6IlhSQVkgVjJLRVkiLCJzY3kiOiJ6ZXJvIiwic25pIjoieHJheS52MmtleS53ZWIuaWQiLCJ0bHMiOiJ0bHMiLCJ0eXBlIjoiLS0tIiwidiI6IjIifQ==</code>
-          <div class="copy-row">
-            <button class="copy-btn" data-key="vmess-tls">Copy</button>
-            <span class="status-chip" id="status-vmess-tls">Copied!</span>
-          </div>
-        </div>
-      </section>
-
-      <!-- VMESS NON TLS -->
-      <section class="config-card" style="animation-delay: 0.1s;">
-        <div class="config-header">
-          <div class="config-title-wrapper">
-            <div class="config-title">
-              VMESS NON TLS
-              <span class="config-tag">NON TLS</span>
-            </div>
-            <div class="type-pill"><span>VMESS</span> · Websocket · 80</div>
-          </div>
-          <div class="ping-pill">
-            <span class="ping-dot"></span>
-            <span>Ping:</span>
-            <span class="ping-value" data-ping-url="https://xray.v2key.web.id/">…</span>
-          </div>
-        </div>
-        <div class="config-body">
-          <code>vmess://eyJhZGQiOiJ4cmF5LnYya2V5LndlYi5pZCIsImFpZCI6IjAiLCJhbHBuIjoiIiwiZnAiOiIiLCJob3N0IjoieHJheS52MmtleS53ZWIuaWQiLCJpZCI6ImFjZDIxZjM4LTk5MGEtNGVhMC1iNTIyLWRkNWI3ODBkMmM5NCIsIm5ldCI6IndzIiwicGF0aCI6Ii92bWVzcyIsInBvcnQiOiI4MCIsInBzIjoiWFJBWSBWMktFWSIsInNjeSI6Inplcm8iLCJzbmkiOiJ4cmF5LnYya2V5LndlYi5pZCIsInRscyI6IiIsInR5cGUiOiItLS0iLCJ2IjoiMiJ9</code>
-          <div class="copy-row">
-            <button class="copy-btn" data-key="vmess-non-tls">Copy</button>
-            <span class="status-chip" id="status-vmess-non-tls">Copied!</span>
-          </div>
-        </div>
-      </section>
-
-      <!-- VLESS TLS -->
-      <section class="config-card" style="animation-delay: 0.15s;">
-        <div class="config-header">
-          <div class="config-title-wrapper">
-            <div class="config-title">
-              VLESS TLS
-              <span class="config-tag">TLS</span>
-            </div>
-            <div class="type-pill"><span>VLESS</span> · Websocket · 443</div>
-          </div>
-          <div class="ping-pill">
-            <span class="ping-dot"></span>
-            <span>Ping:</span>
-            <span class="ping-value" data-ping-url="https://xray.v2key.web.id/">…</span>
-          </div>
-        </div>
-        <div class="config-body">
-          <code>vless://acd21f38-990a-4ea0-b522-dd5b780d2c94@xray.v2key.web.id:443?path=%2Fvless&amp;security=tls&amp;encryption=none&amp;host=xray.v2key.web.id&amp;type=ws&amp;sni=xray.v2key.web.id#XRAY%20V2KEY</code>
-          <div class="copy-row">
-            <button class="copy-btn" data-key="vless-tls">Copy</button>
-            <span class="status-chip" id="status-vless-tls">Copied!</span>
-          </div>
-        </div>
-      </section>
-
-      <!-- VLESS NON TLS -->
-      <section class="config-card" style="animation-delay: 0.2s;">
-        <div class="config-header">
-          <div class="config-title-wrapper">
-            <div class="config-title">
-              VLESS NON TLS
-              <span class="config-tag">NON TLS</span>
-            </div>
-            <div class="type-pill"><span>VLESS</span> · Websocket · 80</div>
-          </div>
-          <div class="ping-pill">
-            <span class="ping-dot"></span>
-            <span>Ping:</span>
-            <span class="ping-value" data-ping-url="https://xray.v2key.web.id/">…</span>
-          </div>
-        </div>
-        <div class="config-body">
-          <code>vless://acd21f38-990a-4ea0-b522-dd5b780d2c94@xray.v2key.web.id:80?path=%2Fvless&amp;security=none&amp;encryption=none&amp;host=xray.v2key.web.id&amp;type=ws&amp;sni=xray.v2key.web.id#XRAY%20V2KEY</code>
-          <div class="copy-row">
-            <button class="copy-btn" data-key="vless-non-tls">Copy</button>
-            <span class="status-chip" id="status-vless-non-tls">Copied!</span>
-          </div>
-        </div>
-      </section>
-
-      <!-- TROJAN TLS -->
-      <section class="config-card" style="animation-delay: 0.25s;">
-        <div class="config-header">
-          <div class="config-title-wrapper">
-            <div class="config-title">
-              TROJAN TLS
-              <span class="config-tag">TLS</span>
-            </div>
-            <div class="type-pill"><span>TROJAN</span> · Websocket · 443</div>
-          </div>
-          <div class="ping-pill">
-            <span class="ping-dot"></span>
-            <span>Ping:</span>
-            <span class="ping-value" data-ping-url="https://xray.v2key.web.id/">…</span>
-          </div>
-        </div>
-        <div class="config-body">
-          <code>trojan://acd21f38-990a-4ea0-b522-dd5b780d2c94@xray.v2key.web.id:443?path=%2Ftrojan&amp;security=tls&amp;host=xray.v2key.web.id&amp;type=ws&amp;sni=xray.v2key.web.id#XRAY%20V2KEY</code>
-          <div class="copy-row">
-            <button class="copy-btn" data-key="trojan-tls">Copy</button>
-            <span class="status-chip" id="status-trojan-tls">Copied!</span>
-          </div>
-        </div>
-      </section>
-
-      <!-- TROJAN NON TLS -->
-      <section class="config-card" style="animation-delay: 0.3s;">
-        <div class="config-header">
-          <div class="config-title-wrapper">
-            <div class="config-title">
-              TROJAN NON TLS
-              <span class="config-tag">NON TLS</span>
-            </div>
-            <div class="type-pill"><span>TROJAN</span> · Websocket · 80</div>
-          </div>
-          <div class="ping-pill">
-            <span class="ping-dot"></span>
-            <span>Ping:</span>
-            <span class="ping-value" data-ping-url="https://xray.v2key.web.id/">…</span>
-          </div>
-        </div>
-        <div class="config-body">
-          <code>trojan://acd21f38-990a-4ea0-b522-dd5b780d2c94@xray.v2key.web.id:80?path=%2Ftrojan&amp;security=none&amp;host=xray.v2key.web.id&amp;type=ws&amp;sni=xray.v2key.web.id#XRAY%20V2KEY</code>
-          <div class="copy-row">
-            <button class="copy-btn" data-key="trojan-non-tls">Copy</button>
-            <span class="status-chip" id="status-trojan-non-tls">Copied!</span>
-          </div>
-        </div>
-      </section>
-
-      <!-- SHADOWSOCKS TLS -->
-      <section class="config-card" style="animation-delay: 0.35s;">
-        <div class="config-header">
-          <div class="config-title-wrapper">
-            <div class="config-title">
-              SHADOWSOCKS TLS
-              <span class="config-tag">TLS</span>
-            </div>
-            <div class="type-pill"><span>SS</span> · Websocket · 443</div>
-          </div>
-          <div class="ping-pill">
-            <span class="ping-dot"></span>
-            <span>Ping:</span>
-            <span class="ping-value" data-ping-url="https://xray.v2key.web.id/">…</span>
-          </div>
-        </div>
-        <div class="config-body">
-          <code>ss://bm9uZTphY2QyMWYzOC05OTBhLTRlYTAtYjUyMi1kZDViNzgwZDJjOTQ=@xray.v2key.web.id:443?path=%2Fshadowsocks&amp;security=tls&amp;host=xray.v2key.web.id&amp;type=ws&amp;sni=xray.v2key.web.id#XRAY+V2KEY</code>
-          <div class="copy-row">
-            <button class="copy-btn" data-key="ss-tls">Copy</button>
-            <span class="status-chip" id="status-ss-tls">Copied!</span>
-          </div>
-        </div>
-      </section>
-
-      <!-- SHADOWSOCKS NON TLS -->
-      <section class="config-card" style="animation-delay: 0.4s;">
-        <div class="config-header">
-          <div class="config-title-wrapper">
-            <div class="config-title">
-              SHADOWSOCKS NON TLS
-              <span class="config-tag">NON TLS</span>
-            </div>
-            <div class="type-pill"><span>SS</span> · Websocket · 80</div>
-          </div>
-          <div class="ping-pill">
-            <span class="ping-dot"></span>
-            <span>Ping:</span>
-            <span class="ping-value" data-ping-url="https://xray.v2key.web.id/">…</span>
-          </div>
-        </div>
-        <div class="config-body">
-          <code>ss://bm9uZTphY2QyMWYzOC05OTBhLTRlYTAtYjUyMi1kZDViNzgwZDJjOTQ=@xray.v2key.web.id:80?path=%2Fshadowsocks&amp;security=none&amp;host=xray.v2key.web.id&amp;type=ws&amp;sni=xray.v2key.web.id#XRAY+V2KEY</code>
-          <div class="copy-row">
-            <button class="copy-btn" data-key="ss-non-tls">Copy</button>
-            <span class="status-chip" id="status-ss-non-tls">Copied!</span>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <footer>
-      © <span>V2KEY</span> · Crafted by Technic Developer
-    </footer>
+    <div class="vignette"></div>
   </div>
 
   <script>
-    // Map key -> full code
-    const configMap = {
-      "vmess-tls": "vmess://eyJhZGQiOiJ4cmF5LnYya2V5LndlYi5pZCIsImFpZCI6IjAiLCJhbHBuIjoiIiwiZnAiOiIiLCJob3N0IjoieHJheS52MmtleS53ZWIuaWQiLCJpZCI6ImFjZDIxZjM4LTk5MGEtNGVhMC1iNTIyLWRkNWI3ODBkMmM5NCIsIm5ldCI6IndzIiwicGF0aCI6Ii92bWVzcyIsInBvcnQiOiI0NDMiLCJwcyI6IlhSQVkgVjJLRVkiLCJzY3kiOiJ6ZXJvIiwic25pIjoieHJheS52MmtleS53ZWIuaWQiLCJ0bHMiOiJ0bHMiLCJ0eXBlIjoiLS0tIiwidiI6IjIifQ==",
-      "vmess-non-tls": "vmess://eyJhZGQiOiJ4cmF5LnYya2V5LndlYi5pZCIsImFpZCI6IjAiLCJhbHBuIjoiIiwiZnAiOiIiLCJob3N0IjoieHJheS52MmtleS53ZWIuaWQiLCJpZCI6ImFjZDIxZjM4LTk5MGEtNGVhMC1iNTIyLWRkNWI3ODBkMmM5NCIsIm5ldCI6IndzIiwicGF0aCI6Ii92bWVzcyIsInBvcnQiOiI4MCIsInBzIjoiWFJBWSBWMktFWSIsInNjeSI6Inplcm8iLCJzbmkiOiJ4cmF5LnYya2V5LndlYi5pZCIsInRscyI6IiIsInR5cGUiOiItLS0iLCJ2IjoiMiJ9",
-      "vless-tls": "vless://acd21f38-990a-4ea0-b522-dd5b780d2c94@xray.v2key.web.id:443?path=%2Fvless&security=tls&encryption=none&host=xray.v2key.web.id&type=ws&sni=xray.v2key.web.id#XRAY%20V2KEY",
-      "vless-non-tls": "vless://acd21f38-990a-4ea0-b522-dd5b780d2c94@xray.v2key.web.id:80?path=%2Fvless&security=none&encryption=none&host=xray.v2key.web.id&type=ws&sni=xray.v2key.web.id#XRAY%20V2KEY",
-      "trojan-tls": "trojan://acd21f38-990a-4ea0-b522-dd5b780d2c94@xray.v2key.web.id:443?path=%2Ftrojan&security=tls&host=xray.v2key.web.id&type=ws&sni=xray.v2key.web.id#XRAY%20V2KEY",
-      "trojan-non-tls": "trojan://acd21f38-990a-4ea0-b522-dd5b780d2c94@xray.v2key.web.id:80?path=%2Ftrojan&security=none&host=xray.v2key.web.id&type=ws&sni=xray.v2key.web.id#XRAY%20V2KEY",
-      "ss-tls": "ss://bm9uZTphY2QyMWYzOC05OTBhLTRlYTAtYjUyMi1kZDViNzgwZDJjOTQ=@xray.v2key.web.id:443?path=%2Fshadowsocks&security=tls&host=xray.v2key.web.id&type=ws&sni=xray.v2key.web.id#XRAY+V2KEY",
-      "ss-non-tls": "ss://bm9uZTphY2QyMWYzOC05OTBhLTRlYTAtYjUyMi1kZDViNzgwZDJjOTQ=@xray.v2key.web.id:80?path=%2Fshadowsocks&security=none&host=xray.v2key.web.id&type=ws&sni=xray.v2key.web.id#XRAY+V2KEY"
-    };
+    // Create sparks (light particles)
+    const sparksWrap = document.getElementById("sparks");
+    const sparkCount = 36;
 
-    function showStatus(key, type) {
-      const el = document.getElementById("status-" + key);
-      if (!el) return;
-      el.classList.remove("success", "error");
-      el.classList.add("visible");
-      if (type === "success") {
-        el.textContent = "Copied!";
-        el.classList.add("success");
-      } else {
-        el.textContent = "Copy failed";
-        el.classList.add("error");
-      }
-      clearTimeout(el._timeoutId);
-      el._timeoutId = setTimeout(() => {
-        el.classList.remove("visible", "success", "error");
-      }, 1800);
-    }
+    function rand(min, max){ return Math.random() * (max - min) + min; }
 
-    async function handleCopyClick(e) {
-      const btn = e.target.closest(".copy-btn");
-      if (!btn) return;
-      const key = btn.getAttribute("data-key");
-      const text = configMap[key];
-      if (!text) return;
-
-      try {
-        if (navigator.clipboard && navigator.clipboard.writeText) {
-          await navigator.clipboard.writeText(text);
-        } else {
-          const temp = document.createElement("textarea");
-          temp.value = text;
-          document.body.appendChild(temp);
-          temp.select();
-          document.execCommand("copy");
-          document.body.removeChild(temp);
-        }
-        showStatus(key, "success");
-      } catch (err) {
-        console.error(err);
-        showStatus(key, "error");
+    function makeSparks(){
+      sparksWrap.innerHTML = "";
+      for(let i=0; i<sparkCount; i++){
+        const s = document.createElement("div");
+        s.className = "spark";
+        s.style.left = rand(3, 97) + "%";
+        s.style.top  = rand(65, 105) + "%";
+        s.style.animationDelay = rand(0, 5.8) + "s";
+        s.style.animationDuration = rand(4.6, 7.2) + "s";
+        s.style.transform = `translateY(${rand(10, 50)}px)`;
+        sparksWrap.appendChild(s);
       }
     }
+    makeSparks();
+    window.addEventListener("resize", makeSparks);
 
-    document.addEventListener("click", handleCopyClick);
+    // Manual lightning flash
+    function flashNow(){
+      const bolts = document.querySelectorAll(".bolt");
+      // force flash quickly by toggling animation
+      bolts.forEach((b, idx) => {
+        b.style.animation = "none";
+        // reflow
+        void b.offsetHeight;
+        b.style.animation = `boltFlash ${rand(1.2, 2.2)}s infinite`;
+        b.style.animationDelay = (idx * 0.12) + "s";
+      });
 
-    // --- PING OTOMATIS (ditampilkan lebih kecil / "estetik") ---
-    async function measurePing(el, url) {
-      const start = performance.now();
-      try {
-        await fetch(url, { mode: "no-cors", cache: "no-store" });
-        const elapsed = performance.now() - start;    // ping asli (ms)
+      // quick UI jitter
+      const card = document.querySelector(".card");
+      card.animate([
+        { transform: "translateY(0px) scale(1)" },
+        { transform: "translateY(-2px) scale(1.002)" },
+        { transform: "translateY(0px) scale(1)" }
+      ], { duration: 260, easing: "cubic-bezier(.2,.9,.2,1)" });
 
-        // Skala supaya tampilan ping lebih kecil & dibatasi
-        let displayed = Math.round(elapsed * 0.35);   // 35% dari nilai asli
-        if (displayed < 5) displayed = 5;             // minimal 5 ms
-        if (displayed > 150) displayed = 150;         // maksimal 150 ms
-
-        el.textContent = displayed + " ms";
-        el.classList.remove("ping-error");
-      } catch (err) {
-        console.error("Ping error:", err);
-        el.textContent = "timeout";
-        el.classList.add("ping-error");
-      }
+      // change status text a bit
+      document.getElementById("field").textContent = "SURGE";
+      document.getElementById("out").textContent = (rand(8.6, 12.8)).toFixed(1) + " kV";
+      setTimeout(()=> document.getElementById("field").textContent = "STABLE", 600);
     }
 
-    function startPingLoop() {
-      const pingEls = document.querySelectorAll(".ping-value");
-      pingEls.forEach((el) => {
-        const url = el.getAttribute("data-ping-url");
-        if (!url) return;
+    // Toggle power mode (reduce effects)
+    let powerOn = true;
+    function togglePower(){
+      powerOn = !powerOn;
+      document.getElementById("mode").textContent = powerOn ? "NEON ACTIVE" : "POWER SAVE";
+      document.getElementById("shield").textContent = powerOn ? "ON" : "ECO";
 
-        // Ping awal
-        measurePing(el, url);
+      const stage = document.querySelector(".stage");
+      stage.style.filter = powerOn ? "none" : "saturate(80%) brightness(0.9)";
 
-        // Ping ulang tiap 2 detik
-        setInterval(() => {
-          measurePing(el, url);
-        }, 2000);
+      // enable/disable heavy animations
+      const animated = document.querySelectorAll(".grid,.aurora,.trace,.ring,.spark,.bolt,.card::before");
+      // cannot select ::before in JS; we just tweak opacity/animations on real nodes:
+      document.querySelector(".grid").style.opacity = powerOn ? ".55" : ".15";
+      document.querySelector(".aurora").style.opacity = powerOn ? ".9" : ".25";
+      document.querySelector(".ring").style.opacity = powerOn ? ".55" : ".12";
+      document.querySelector(".trace").style.opacity = powerOn ? ".65" : ".18";
+      sparksWrap.style.opacity = powerOn ? ".75" : ".2";
+
+      document.querySelectorAll(".bolt").forEach(b=>{
+        b.style.opacity = powerOn ? "" : "0";
       });
     }
 
-    window.addEventListener("load", startPingLoop);
+    // Occasionally trigger extra flash randomly
+    setInterval(()=>{
+      if(!powerOn) return;
+      if(Math.random() < 0.22) flashNow();
+    }, 1800);
   </script>
 </body>
 </html>

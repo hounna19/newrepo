@@ -1,4 +1,4 @@
-name = "phoenix"
+name = "idvip"
 main = "build/worker/shim.mjs"
 compatibility_date = "2024-05-23"
 minify = true
@@ -14,6 +14,6 @@ command = "cargo install worker-build && worker-build --release"
 build = { command = "cargo install worker-build && worker-build --dev" }
 
 [vars]
-UUID = "573217fa-20d7-409d-bfff-7fb238502afd"
+UUID = "1a68e8b7-d446-48aa-aaad-8bd0876a4c76"
 MAIN_PAGE_URL = "https://raw.githubusercontent.com/hounna19/newrepo/refs/heads/master/web/index.html"
 SUB_PAGE_URL = "https://raw.githubusercontent.com/hounna19/newrepo/refs/heads/master/web/sub.html"

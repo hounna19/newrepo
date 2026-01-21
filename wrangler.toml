@@ -5,7 +5,7 @@ minify = true
 
 [[kv_namespaces]]
 binding = "SIREN"
-id = "4998553abce145cf90a6ee8d56e64c12"
+id = "b76e7bd548a249edbdf2b792054ed32c"
 
 [build]
 command = "cargo install worker-build && worker-build --release"
@@ -14,6 +14,6 @@ command = "cargo install worker-build && worker-build --release"
 build = { command = "cargo install worker-build && worker-build --dev" }
 
 [vars]
-UUID = "1a68e8b7-d446-48aa-aaad-8bd0876a4c76"
+UUID = "c7ec897c-30fb-4b2f-becb-cf5ea9eb37b1"
 MAIN_PAGE_URL = "https://raw.githubusercontent.com/hounna19/newrepo/refs/heads/master/web/index.html"
 SUB_PAGE_URL = "https://raw.githubusercontent.com/hounna19/newrepo/refs/heads/master/web/sub.html"

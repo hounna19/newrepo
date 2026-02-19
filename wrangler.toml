@@ -1,11 +1,11 @@
-name = "idulta"
+name = "eskulkul"
 main = "build/worker/shim.mjs"
 compatibility_date = "2024-05-23"
 minify = true
 
 [[kv_namespaces]]
-binding = "TECH"
-id = "6f4fde6c9896491b9d9c1c98c83dc7df"
+binding = "SIREN"
+id = "aa70f49e500c4a2f9336a9c0d71a4c3e"
 
 [build]
 command = "cargo install worker-build && worker-build --release"
@@ -14,6 +14,6 @@ command = "cargo install worker-build && worker-build --release"
 build = { command = "cargo install worker-build && worker-build --dev" }
 
 [vars]
-UUID = "5283b97a-fe53-4d77-8577-95cab4d60f95"
+UUID = "33ac9bd6-bbc3-488c-b95c-733ecc44a7a5"
 MAIN_PAGE_URL = "https://raw.githubusercontent.com/hounna19/newrepo/refs/heads/master/web/index.html"
 SUB_PAGE_URL = "https://raw.githubusercontent.com/hounna19/newrepo/refs/heads/master/web/sub.html"

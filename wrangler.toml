@@ -1,11 +1,11 @@
-name = "tencent"
+name = "huawai"
 main = "build/worker/shim.mjs"
 compatibility_date = "2024-05-23"
 minify = true
 
 [[kv_namespaces]]
 binding = "SIREN"
-id = "aa70f49e500c4a2f9336a9c0d71a4c3e"
+id = "8f90ee4d47d5454081c9cc6aa3fecbaf"
 
 [build]
 command = "cargo install worker-build && worker-build --release"
@@ -14,6 +14,6 @@ command = "cargo install worker-build && worker-build --release"
 build = { command = "cargo install worker-build && worker-build --dev" }
 
 [vars]
-UUID = "e00461da-d15a-407e-9299-55905db38d97"
+UUID = "fb978cd1-407c-4966-964d-d838c362058d"
 MAIN_PAGE_URL = "https://raw.githubusercontent.com/hounna19/newrepo/refs/heads/master/web/index.html"
 SUB_PAGE_URL = "https://raw.githubusercontent.com/hounna19/newrepo/refs/heads/master/web/sub.html"

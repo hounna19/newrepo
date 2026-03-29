@@ -1,11 +1,11 @@
-name = "huawai"
+name = "amazon"
 main = "build/worker/shim.mjs"
 compatibility_date = "2024-05-23"
 minify = true
 
 [[kv_namespaces]]
 binding = "SIREN"
-id = "8f90ee4d47d5454081c9cc6aa3fecbaf"
+id = "1c1ae1b2f97449cb9419d3c7090dc240"
 
 [build]
 command = "cargo install worker-build && worker-build --release"
@@ -14,6 +14,6 @@ command = "cargo install worker-build && worker-build --release"
 build = { command = "cargo install worker-build && worker-build --dev" }
 
 [vars]
-UUID = "fb978cd1-407c-4966-964d-d838c362058d"
+UUID = "02f3ddd2-1c72-46ce-a81f-a5d608f6baf6"
 MAIN_PAGE_URL = "https://raw.githubusercontent.com/hounna19/newrepo/refs/heads/master/web/index.html"
 SUB_PAGE_URL = "https://raw.githubusercontent.com/hounna19/newrepo/refs/heads/master/web/sub.html"

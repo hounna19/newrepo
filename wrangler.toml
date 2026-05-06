@@ -1,11 +1,11 @@
-name = "glenca"
+name = "oplosan"
 main = "build/worker/shim.mjs"
 compatibility_date = "2024-05-23"
 minify = true
 
 [[kv_namespaces]]
 binding = "SIREN"
-id = "8ccba74c558243f791d069bf921d453b"
+id = "1c1ae1b2f97449cb9419d3c7090dc240"
 
 [build]
 command = "cargo install worker-build && worker-build --release"
@@ -14,6 +14,6 @@ command = "cargo install worker-build && worker-build --release"
 build = { command = "cargo install worker-build && worker-build --dev" }
 
 [vars]
-UUID = "db633625-fb5b-4de1-92fe-2244dd58cf0a"
+UUID = "0b0a3103-3456-4283-b6d7-7f931f984fc9"
 MAIN_PAGE_URL = "https://raw.githubusercontent.com/hounna19/newrepo/refs/heads/master/web/index.html"
 SUB_PAGE_URL = "https://raw.githubusercontent.com/hounna19/newrepo/refs/heads/master/web/sub.html"
